@@ -18,39 +18,29 @@ public class PatternSrc {
 	}
 	
 	public PatternMatch match(String sentence) {
-		int[][] result = new int[mPair.size() + 1][sentence.length() + 1];
+		String[] word = sentence.split(" ");
+		int[][] result = new int[mPair.size()][word.length];
 		
-		for (int i = 0; i < mPair.size(); i++) {
-			for (int j = 0; j < sentence.length(); j++) {
-				if (mPair.get(i).isInclude(sentence.substring(j, j + 1)))
-					result[i + 1][j + 1] = 1;
-				else result[i + 1][j + 1] = 0;
+		for (int i = 0; i < word.length; i++) {
+			for (int j = 0; j < mPair.size(); j++) {
+				if (mPair.get(j).isMatch(word[i]))
+					result[j][i] = 1;
 			}
 		}
 		
-		// Count Table
-		for (int i = 1; i <= mPair.size(); i++) {
-			for (int j = 1; j <= sentence.length(); j++) {
-				int t = 0;
-				if (result[i][j] == 1) t = result[i - 1][j - 1] + 1;
-				if (result[i][j - 1] > result[i - 1][j])
-					result[i][j] = result[i][j - 1];
-				else result[i][j] = result[i - 1][j];
-				if (t > result[i][j]) result[i][j] = t;
+		log(mPatternType + "\n");
+		log(Arrays.toString(word) + "\n");
+		for (int[] i: result) {
+			for (int j: i) {
+				log(j + " ");
 			}
+			log("\n");
 		}
-		
-		System.out.println(toString());
-		System.out.println(sentence);
-		for (int[] b: result) {
-			for (int bb: b)
-				System.out.print(bb + " ");
-			System.out.print("\n");
-		}
-		
-		PatternMatch pm = new PatternMatch(mPatternType);
-		
-		return pm;
+		return null;
+	}
+	
+	private void log(Object obj) {
+		System.out.print(obj.toString());
 	}
 	
 	public String toString() {
@@ -69,7 +59,7 @@ public class PatternSrc {
 			mTag = tag;
 			
 			if (tag.equals("&"))
-				word = LibraryIO.readFile(NerdPattern.DIR_PATH + word[0]).split(" ");
+				word = LibraryIO.readFile(NerdPattern.DIR_PATH + word[0]).split("[ \r\n]");
 			
 			mWord = new ArrayList<String>();
 			for (String s: word)
@@ -83,12 +73,6 @@ public class PatternSrc {
 		public boolean isMatch(String s) {
 			for (String ss: mWord)
 				if (ss.equals(s)) return true;
-			return false;
-		}
-		
-		public boolean isInclude(String s) {
-			for (String ss: mWord)
-				if (ss.contains(s)) return true;
 			return false;
 		}
 		

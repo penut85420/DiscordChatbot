@@ -59,7 +59,7 @@ public class PatternSrc {
 			mTag = tag;
 			
 			if (tag.equals("&"))
-				word = LibraryIO.readFile(NerdPattern.DIR_PATH + word[0]).split(" ");
+				word = LibraryIO.readFile(NerdPattern.DIR_PATH + word[0]).split("[ \r\n]");
 			
 			mWord = new ArrayList<String>();
 			for (String s: word)
@@ -71,9 +71,9 @@ public class PatternSrc {
 		}
 		
 		public boolean isMatch(String s) {
-			for (String ss: mWord) {
-				if (ss.trim().equals(s.trim())) return true;
-			}
+			for (String ss: mWord)
+				if (ss.equals(s)) return true;
+
 			return false;
 		}
 		

@@ -13,7 +13,8 @@ public class NerdPattern {
 
 	public static void main(String[] args) {
 		NerdPattern np = new NerdPattern();
-		np.match("嗨 你好");
+		np.match("嗨 肥宅");
+		np.match("我 覺得 那個 好 難");
 	}
 	
 	public NerdPattern() {

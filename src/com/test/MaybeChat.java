@@ -1,6 +1,5 @@
 package com.test;
 
-import com.BotModule.BotBear;
 import com.BotModule.BotPenut;
 import com.Library.LibraryIO;
 
@@ -39,7 +38,7 @@ public class MaybeChat {
 //		IGuild guild = message.getGuild();
 		// String[] returnMsg = new BotBear().response(message.getContent());
 		String[] returnMsg = BotPenut.response(message.getContent());
-		
+		System.out.println(message.getContent());
 		for (String s: returnMsg) {
 			channel.sendMessage(s);
 		}

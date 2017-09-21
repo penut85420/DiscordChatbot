@@ -23,6 +23,10 @@ public class LibraryIO {
 		}
 	}
 	
+	public static String[] readFileLines(String file) {
+		return readFile(file).replaceAll("\r", "").split("\n");
+	}
+	
 	public static void writeFile(String file, String content) {
 		writeFile(new File(file), content);
 	}

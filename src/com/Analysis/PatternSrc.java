@@ -73,7 +73,6 @@ public class PatternSrc {
 		public boolean isMatch(String s) {
 			for (String ss: mWord)
 				if (ss.equals(s)) return true;
-
 			return false;
 		}
 		

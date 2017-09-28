@@ -2,12 +2,12 @@ package com.Analysis.Segmentation;
 
 import static com.Library.LibraryUtil.log;
 
-import com.Library.LibraryIO;
+// import com.Library.LibraryIO;
 
 public class WordSegmentation {
 	static final String MainDictionaryPath = "testing\\dict.txt";
 	static final String UserDictionaryPath = "testing\\user.txt";
-	static final String Sample = "sample\\chat\\ChatSample_0002.txt";
+	static final String Sample = "sample\\chat\\ChatSample_0001.txt";
 	
 	static Dictionary mDictionary;
 	static Boolean isInit = false;

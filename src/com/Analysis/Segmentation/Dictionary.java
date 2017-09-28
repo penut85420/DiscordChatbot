@@ -41,8 +41,9 @@ public class Dictionary {
 	public String toString() {
 		String s = "";
 		for (String key: mDictionaryMap.keySet()) {
-			s += key + ": \n";
+			s += key + " {\n";
 			s += mDictionaryMap.get(key).toString();
+			s += "\n}\n\n";
 		}
 			
 		return s;
@@ -51,6 +52,6 @@ public class Dictionary {
 	public static void main(String[] args) {
 		Dictionary dict = new Dictionary("testing\\dict.txt", "testing\\user.txt");
 		
-		log(dict.match("這個優惠"));
+		log(dict);
 	}
 }

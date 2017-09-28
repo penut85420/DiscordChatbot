@@ -24,7 +24,6 @@ public class WordSegmentation {
 	public static void init() {
 		isInit = true;
 		mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);
-		System.out.println(mDictionary);
 	}
 	
 	public static String MaximumMatch(String s) {

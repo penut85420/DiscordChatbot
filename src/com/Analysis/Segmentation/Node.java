@@ -1,7 +1,7 @@
 package com.Analysis.Segmentation;
 
 import java.util.HashMap;
-import static com.Library.LibraryUtil.log;
+// import static com.Library.LibraryUtil.log;
 
 class Node {
 	String mToken;
@@ -56,9 +56,9 @@ class Node {
 	}
 	
 	public String toString() {
-		String s = mToken + mIsEnd + "\n";
+		String s = "  " + mToken + " " + mIsEnd;
 		for (Node n: mChild.values())
-			s += n.toString() + "\n";
+			s += "\n" + n.toString();
 		return s;
 	}
 }

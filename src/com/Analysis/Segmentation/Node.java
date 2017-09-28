@@ -29,15 +29,23 @@ class Node {
 		mChild.get(first).add(s.substring(1));
 	}
 	
-	public String match(String s) {
-		if (!s.startsWith(mToken)) return "";
+	public String match(String s, String lastCompleteMatch, String lastLongestMatch) {
+		System.out.printf("%s %s %s\n", s, lastCompleteMatch, lastLongestMatch);
 		
-		if (s.length() == 1) return s;
+		if (s.length() == 1) {
+			if (mIsEnd) lastCompleteMatch = lastLongestMatch;
+			return lastCompleteMatch;
+		}
 		
 		String second = s.substring(1, 2);
-		if (mChild.get(second) == null) return s.substring(0, 1);
 		
-		return s.substring(0, 1) + mChild.get(second).match(s.substring(1));
+		if (mChild.get(second) == null) 
+			return lastCompleteMatch;
+		
+		if (mIsEnd) lastCompleteMatch = lastLongestMatch;
+		lastLongestMatch += second;
+		
+		return mChild.get(second).match(s.substring(1), lastCompleteMatch, lastLongestMatch);
 	}
 	
 	public String toString() {

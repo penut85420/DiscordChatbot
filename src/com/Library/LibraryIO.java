@@ -8,6 +8,7 @@ public class LibraryIO {
 	}
 	
 	public static String readFile(String file) {
+		if (file == null) return null;
 		try {
 			if (!new File(file).exists()) return null;
 			FileInputStream fin = new FileInputStream(file);
@@ -24,7 +25,10 @@ public class LibraryIO {
 	}
 	
 	public static String[] readFileLines(String file) {
-		return readFile(file).replaceAll("\r", "").split("\n");
+		String f = readFile(file);
+		if (f != null)
+			return f.replaceAll("\r", "").split("\n");
+		return null;
 	}
 	
 	public static void writeFile(String file, String content) {

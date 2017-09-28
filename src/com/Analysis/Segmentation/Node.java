@@ -1,6 +1,7 @@
 package com.Analysis.Segmentation;
 
 import java.util.HashMap;
+import static com.Library.LibraryUtil.log;
 
 class Node {
 	String mToken;
@@ -34,15 +35,19 @@ class Node {
 		
 		if (s.length() == 1) {
 			if (mIsEnd) lastCompleteMatch = lastLongestMatch;
+			log("Length = 1 Return");
 			return lastCompleteMatch;
 		}
 		
 		String second = s.substring(1, 2);
 		
-		if (mChild.get(second) == null) 
-			return lastCompleteMatch;
-		
 		if (mIsEnd) lastCompleteMatch = lastLongestMatch;
+		
+		if (mChild.get(second) == null) {
+			log("Second Null Return");
+			return lastCompleteMatch;
+		}
+		
 		lastLongestMatch += second;
 		
 		return mChild.get(second).match(s.substring(1), lastCompleteMatch, lastLongestMatch);

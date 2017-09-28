@@ -38,8 +38,11 @@ public class Dictionary {
 	
 	public String toString() {
 		String s = "";
-		for (Node n: mDictionaryMap.values())
-			s += n.toString();
+		for (String key: mDictionaryMap.keySet()) {
+			s += key + ": \n";
+			s += mDictionaryMap.get(key).toString();
+		}
+			
 		return s;
 	}
 	

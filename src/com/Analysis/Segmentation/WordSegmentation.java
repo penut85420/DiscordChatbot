@@ -10,7 +10,7 @@ public class WordSegmentation {
 	static Boolean isInit = false;
 	
 	public static void main(String[] args) {
-		log(WordSegmentation.MaximumMatch("我覺得星爆氣流好難"));
+		log(WordSegmentation.MaximumMatch("我覺得星爆氣流斬好難"));
 	}
 	
 	public static void init() {

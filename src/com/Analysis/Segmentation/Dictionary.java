@@ -17,12 +17,14 @@ public class Dictionary {
 		if (words == null) return ;
 		
 		for (String token: words) {
-			if (token.length() == 1) {
+			if (token.length() == 1 && mDictionaryMap.get(token) == null) {
 				mDictionaryMap.put(token, new Node(token));
 				continue;
 			}
 			
-			String first = token.substring(0, 1);
+			String first = token.substring(0, 1); 
+			if (mDictionaryMap.get(first) == null)
+				mDictionaryMap.put(first, new Node(first, false));
 			mDictionaryMap.get(first).add(token.substring(1));
 		}
 	}
@@ -49,6 +51,6 @@ public class Dictionary {
 	public static void main(String[] args) {
 		Dictionary dict = new Dictionary("testing\\dict.txt", "testing\\user.txt");
 		
-		log(dict.match("我覺得"));
+		log(dict.match("這個優惠"));
 	}
 }

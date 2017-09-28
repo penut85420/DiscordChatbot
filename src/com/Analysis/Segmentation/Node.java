@@ -19,6 +19,8 @@ class Node {
 	}
 	
 	public void add(String s) {
+		if (s.length() <= 0) return ;
+		
 		if (s.length() == 1) {
 			mChild.put(s, new Node(s));
 			return ;
@@ -31,11 +33,11 @@ class Node {
 	}
 	
 	public String match(String s, String lastCompleteMatch, String lastLongestMatch) {
-		System.out.printf("%s %s %s\n", s, lastCompleteMatch, lastLongestMatch);
+		// System.out.printf("%s %s %s\n", s, lastCompleteMatch, lastLongestMatch);
 		
 		if (s.length() == 1) {
 			if (mIsEnd) lastCompleteMatch = lastLongestMatch;
-			log("Length = 1 Return");
+			// log("Length = 1 Return");
 			return lastCompleteMatch;
 		}
 		
@@ -44,7 +46,7 @@ class Node {
 		if (mIsEnd) lastCompleteMatch = lastLongestMatch;
 		
 		if (mChild.get(second) == null) {
-			log("Second Null Return");
+			// log("Second Null Return");
 			return lastCompleteMatch;
 		}
 		

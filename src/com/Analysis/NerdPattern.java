@@ -14,7 +14,7 @@ public class NerdPattern {
 	public static void main(String[] args) {
 		NerdPattern np = new NerdPattern();
 		np.match("嗨 肥宅");
-		np.match("我 覺得 星爆 氣流斬 好 難");
+		np.match("我 覺得 星爆 星 星 星 氣流斬 好 難 喔 www");
 	}
 	
 	public NerdPattern() {

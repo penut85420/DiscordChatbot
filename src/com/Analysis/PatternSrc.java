@@ -32,17 +32,23 @@ public class PatternSrc {
 		boolean matched = false;
 		for (int i = 1; i < mPair.size() + 1; i++) {
 			for (int j = 1; j < word.length + 1; j++) {
-				if (mPair.get(i - 1).isMatch(word[j - 1]))
-					matched = true;
-				if (result[i - 1][j - 1] + 1 > result[i - 1][j] && result[i - 1][j - 1] + 1 > result[i][j - 1]
-						&& matched)
+				matched = mPair.get(i - 1).isMatch(word[j - 1]);
+				result[i][j] = result[i-1][j];
+				if (result[i][j] < result[i][j-1])
+					result[i][j] = result[i][j-1];
+				
+				if (matched && result[i][j] < result[i-1][j-1] + 1) {
 					result[i][j] = result[i - 1][j - 1] + 1;
-				else if (result[i - 1][j] == result[i][j - 1])
-					result[i][j] = result[i - 1][j];
-				else if (result[i - 1][j] > result[i][j - 1])
-					result[i][j] = result[i - 1][j];
-				else
-					result[i][j] = result[i][j - 1];
+				}
+//				if (result[i - 1][j - 1] + 1 > result[i - 1][j] && result[i - 1][j - 1] + 1 > result[i][j - 1]
+//						&& matched)
+//					result[i][j] = result[i - 1][j - 1] + 1;
+//				else if (result[i - 1][j] == result[i][j - 1])
+//					result[i][j] = result[i - 1][j];
+//				else if (result[i - 1][j] > result[i][j - 1])
+//					result[i][j] = result[i - 1][j];
+//				else
+//					result[i][j] = result[i][j - 1];
 			}
 		}
 		

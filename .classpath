@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/Discord4j.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-nop-1.7.25.jar"/>
+	<classpathentry kind="lib" path="C:/Users/penut/Downloads/mysql-connector-java-5.1.44/mysql-connector-java-5.1.44-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

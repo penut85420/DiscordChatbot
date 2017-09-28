@@ -8,6 +8,7 @@ import static com.Library.LibraryUtil.log;
 public class Try {
 	final static String INPUT = "testing\\input.txt";
 	final static String SMALL = "testing\\small.txt";
+	// Add User Dict
 	
 	static HashMap<String, Node> list = new HashMap<>();
 	
@@ -38,7 +39,7 @@ public class Try {
 			c = getChar(s, i);
 			Node n = list.get(c);
 			String ss = n.match(s.substring(i));
-			r += ss + " ";
+			r += ss + "   ";
 			i += ss.length();
 		}
 		

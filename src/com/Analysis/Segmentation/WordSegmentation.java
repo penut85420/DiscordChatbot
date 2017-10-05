@@ -13,6 +13,7 @@ public class WordSegmentation {
 		log(WordSegmentation.MaximumMatch("我覺得星爆氣流斬好難"));
 		log(WordSegmentation.MaximumMatch("這個折扣真難得"));
 		log(WordSegmentation.MaximumMatch("...OAO真的嗎0.0?"));
+		log(WordSegmentation.MaximumMatch("變形金剛"));
 	}
 	
 	public static void init() {

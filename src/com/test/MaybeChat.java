@@ -1,5 +1,6 @@
 package com.test;
 
+import com.BotModule.BotCommand;
 import com.BotModule.BotPenut;
 import com.Library.LibraryIO;
 
@@ -11,9 +12,10 @@ import sx.blah.discord.handle.obj.*;
 import sx.blah.discord.util.*;
 
 public class MaybeChat {
-	private static String TOKEN;
-	private static IDiscordClient client;
-
+	static String TOKEN;
+	static IDiscordClient client;
+	static BotPenut Penut = new BotPenut();
+	
 	public static void main(String[] args) throws DiscordException, RateLimitException {
 		TOKEN = LibraryIO.readFile("data/token.dat");
 		log("Logging bot in...");
@@ -32,16 +34,28 @@ public class MaybeChat {
 	public void onMessageReceived(MessageReceivedEvent event)  {
 		IMessage message = event.getMessage();
 		IUser user = message.getAuthor();
+		String msg = message.getContent();
 		if (user.isBot()) return;
 		
 		IChannel channel = message.getChannel();
-//		IGuild guild = message.getGuild();
-		// String[] returnMsg = new BotBear().response(message.getContent());
-		String[] returnMsg = BotPenut.response(message.getContent());
-		System.out.println(message.getContent());
-		for (String s: returnMsg) {
+		
+		if (cmdCheck(msg, channel)) return;
+
+		String[] returnMsg = Penut.sendMessage(msg);
+		
+		for (String s: returnMsg)
 			channel.sendMessage(s);
+	}
+	
+	private boolean cmdCheck(String msg, IChannel ch) {
+		if (BotCommand.isCmd(msg)) {
+			boolean isLegalCmd = BotCommand.doCmd(msg);
+			if (!isLegalCmd)
+				ch.sendMessage("Not a legal command.");
+			return true;
 		}
+		
+		return false;
 	}
 	
 	private static void log(Object obj) {

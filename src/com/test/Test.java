@@ -1,12 +1,27 @@
 package com.test;
 
-import java.util.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Arrays;
+
+import com.Library.LibraryIO;
 
 public class Test {
+
 	public static void main(String[] args) {
-		Calendar c = Calendar.getInstance();
-		c.setTime(new Date("2017/10/1"));
-		int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-		System.out.println(dayOfWeek);
+		String[] dict = LibraryIO.readFileLines("testing\\dictdict.txt");
+		Arrays.sort(dict);
+		File file = new File("testing\\dict_sort.txt");
+		try {
+			if (!file.exists()) 
+				file.getParentFile().mkdir();
+			FileOutputStream fout = new FileOutputStream(file);
+			fout.write(new String("\uFEFF").getBytes("UTF-8"));
+			for (String s: dict)
+				fout.write(new String(s + "\n").getBytes("UTF-8"));
+			fout.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 }

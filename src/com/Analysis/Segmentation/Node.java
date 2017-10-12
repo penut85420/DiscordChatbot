@@ -33,7 +33,7 @@ class Node {
 	}
 	
 	public String match(String s, String lastCompleteMatch, String lastLongestMatch) {
-		System.out.printf("%s %s %s\n", s, lastCompleteMatch, lastLongestMatch);
+		// System.out.printf("%s %s %s\n", s, lastCompleteMatch, lastLongestMatch);
 		
 		if (s.length() == 1) {
 			if (mIsEnd) lastCompleteMatch = lastLongestMatch;

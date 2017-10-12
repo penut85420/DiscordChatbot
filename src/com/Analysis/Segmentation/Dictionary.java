@@ -17,6 +17,7 @@ public class Dictionary {
 		if (words == null) return ;
 		
 		for (String token: words) {
+			if (token.length() < 1) continue;
 			if (token.length() == 1 && mDictionaryMap.get(token) == null) {
 				mDictionaryMap.put(token, new Node(token));
 				continue;

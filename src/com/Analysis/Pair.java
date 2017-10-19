@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import com.Analysis.Pattern.NerdPattern;
 import com.Library.LibraryIO;
 
-public class WordPair {
+public class Pair {
 		ArrayList<String> mWord;
 		private String mTag;
 
-		public WordPair(String[] word, String tag) {
+		public Pair(String[] word, String tag) {
 			setTag(tag);
 
 			if (tag.equals("&"))

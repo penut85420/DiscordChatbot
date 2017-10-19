@@ -2,11 +2,11 @@ package com.Analysis.Pattern;
 
 import java.util.*;
 
-import com.Analysis.WordPair;
+import com.Analysis.Pair;
 
 public class PatternSrc {
 	String mPatternType;
-	ArrayList<WordPair> mPair;
+	ArrayList<Pair> mPair;
 
 	public PatternSrc(String type) {
 		mPatternType = type;
@@ -14,7 +14,7 @@ public class PatternSrc {
 	}
 
 	public void addPair(String[] pair, String tag) {
-		mPair.add(new WordPair(pair, tag));
+		mPair.add(new Pair(pair, tag));
 	}
 
 	public PatternMatch match(String sentence) {
@@ -113,7 +113,7 @@ public class PatternSrc {
 
 	public String toString() {
 		String s = mPatternType + " {\n";
-		for (WordPair p : mPair)
+		for (Pair p : mPair)
 			s += "  " + p.toString() + "\n";
 		s += "}";
 		return s;

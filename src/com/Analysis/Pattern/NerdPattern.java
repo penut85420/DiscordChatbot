@@ -9,7 +9,7 @@ public class NerdPattern {
 	public static String DIR_PATH = "data/pattern/";
 	private static String FILE_PATTERN = "pattern.dat";
 	
-	ArrayList<PatternSrc> mPatternList;
+	ArrayList<PatternSrc> mPatternList = new ArrayList<>();
 
 	public static void main(String[] args) {
 		NerdPattern np = new NerdPattern();
@@ -18,10 +18,7 @@ public class NerdPattern {
 	}
 	
 	public NerdPattern() {
-		mPatternList = new ArrayList<>();
-		
-		String[] pattern = LibraryIO.readFile(DIR_PATH + FILE_PATTERN)
-				.replaceAll("\r", "").split("\n");
+		String[] pattern = LibraryIO.readFileLines(DIR_PATH + FILE_PATTERN);
 		
 		for (String p: pattern) {
 			String[] term = p.split(" ");

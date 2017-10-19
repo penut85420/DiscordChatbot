@@ -51,7 +51,7 @@ public class Dictionary {
 	}
 	
 	public static void main(String[] args) {
-		Dictionary dict = new Dictionary("testing\\dict.txt", "testing\\user.txt");
+		Dictionary dict = new Dictionary("data\\dictionary\\dictionary_small.txt", null);
 		
 		log(dict);
 	}

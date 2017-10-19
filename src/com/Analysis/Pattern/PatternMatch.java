@@ -1,4 +1,4 @@
-package com.Analysis;
+package com.Analysis.Pattern;
 
 public class PatternMatch {
 	String mMatchType;

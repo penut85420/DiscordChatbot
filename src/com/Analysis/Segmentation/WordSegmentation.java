@@ -9,10 +9,17 @@ import com.Library.LibraryIO;
 public class WordSegmentation {
 	static final String MainDictionaryPath = "data\\dictionary\\dictionary_main.txt";
 	static final String UserDictionaryPath = "data\\dictionary\\dictionary_user.txt";
+	static final String TinyDictionaryPath = "data\\dictionary\\dictionary_small.txt";
 	
-	static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);;
+	// static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);
+	static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, null);
 	
-	public static void main(String[] args) throws UnsupportedEncodingException, IOException {
+	public static void main(String[] args) throws Exception {
+		unitTest1();
+		unitTest2();
+	}
+	
+	public static void unitTest1() throws Exception {
 		File folder = new File("testing\\plaintxt\\");
 		String folder_out = "testing\\wSeg\\";
 		for (File f: folder.listFiles()) {
@@ -23,7 +30,9 @@ public class WordSegmentation {
 				fout.write(WordSegmentation.MaximumMatch(s).getBytes("UTF-8"));
 			fout.close();
 		}
-		
+	}
+	
+	public static void unitTest2() {
 		log(WordSegmentation.MaximumMatch("我覺得星爆氣流斬好難"));
 		log(WordSegmentation.MaximumMatch("這個折扣真難得"));
 		log(WordSegmentation.MaximumMatch("...OAO真的嗎0.0?"));
@@ -41,6 +50,6 @@ public class WordSegmentation {
 			result += match + " ";
 		}
 		
-		return result;
+		return result.trim();
 	}
 }

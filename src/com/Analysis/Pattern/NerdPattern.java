@@ -1,4 +1,4 @@
-package com.Analysis;
+package com.Analysis.Pattern;
 
 import java.util.*;
 

@@ -1,12 +1,12 @@
-package com.Analysis;
+package com.Analysis.Pattern;
 
 import java.util.*;
 
-import com.Library.LibraryIO;
+import com.Analysis.WordPair;
 
 public class PatternSrc {
 	String mPatternType;
-	ArrayList<Pair> mPair;
+	ArrayList<WordPair> mPair;
 
 	public PatternSrc(String type) {
 		mPatternType = type;
@@ -14,7 +14,7 @@ public class PatternSrc {
 	}
 
 	public void addPair(String[] pair, String tag) {
-		mPair.add(new Pair(pair, tag));
+		mPair.add(new WordPair(pair, tag));
 	}
 
 	public PatternMatch match(String sentence) {
@@ -72,7 +72,7 @@ public class PatternSrc {
 		}
 		int patternLength = 0;
 		for (int i = 0; i < mPair.size(); i++) {
-			if (!mPair.get(i).mTag.equals("@"))
+			if (!mPair.get(i).getTag().equals("@"))
 				patternLength++;
 		}
 
@@ -113,45 +113,9 @@ public class PatternSrc {
 
 	public String toString() {
 		String s = mPatternType + " {\n";
-		for (Pair p : mPair)
+		for (WordPair p : mPair)
 			s += "  " + p.toString() + "\n";
 		s += "}";
 		return s;
-	}
-
-	class Pair {
-		ArrayList<String> mWord;
-		String mTag;
-
-		public Pair(String[] word, String tag) {
-			mTag = tag;
-
-			if (tag.equals("&"))
-				word = LibraryIO.readFile(NerdPattern.DIR_PATH + word[0]).split("[ \r\n]");
-
-			mWord = new ArrayList<String>();
-			for (String s : word)
-				mWord.add(s);
-		}
-
-		public ArrayList<String> getWordList() {
-			return mWord;
-		}
-
-		public boolean isMatch(String s) {
-			for (String ss : mWord)
-				if (ss.equals(s))
-					return true;
-			return false;
-		}
-
-		public String toString() {
-			String s = mTag + ":";
-
-			for (String ss : mWord)
-				s += " " + ss;
-
-			return s;
-		}
 	}
 }

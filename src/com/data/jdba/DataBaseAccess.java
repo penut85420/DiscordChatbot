@@ -12,12 +12,27 @@ public class DataBaseAccess {
 	private Connection conn = null;
 	private Statement st;
 	private ResultSet rs;
+	private TargetTable table;
 	
-	public static enum targetTable{USER, GAME, FAVORITE, MESSAGE};
+	public static enum TargetTable{USER, GAME, FAVORITE, MESSAGE};
 	
 	public DataBaseAccess() throws ClassNotFoundException, SQLException{
 		 Class.forName("com.mysql.jdbc.Driver");
 		 conn = DriverManager.getConnection(datasource);
 		 st = conn.createStatement();
+	}
+	
+	public void changeTable(TargetTable table){
+		this.table = table;
+	}
+	
+	class InsertAdapter {
+		public InsertAdapter(){
+			
+		}
+		
+		public void insert(){
+			
+		}
 	}
 }

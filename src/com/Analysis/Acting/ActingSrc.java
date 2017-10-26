@@ -13,8 +13,13 @@ public class ActingSrc {
 		mPair = new ArrayList<>();
 	}
 
+	@Deprecated
 	public void addPair(String[] pair, String tag) {
 		mPair.add(new Pair(pair, tag));
+	}
+	
+	public void addPair(String tag, String word) {
+		mPair.add(new Pair(tag, word));
 	}
 
 	public ActingMatch match(String sentence) {

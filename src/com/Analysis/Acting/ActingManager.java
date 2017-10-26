@@ -26,7 +26,7 @@ public class ActingManager {
 			for (int i = 1; i < term.length; i++) {
 				String tag = term[i].substring(0, 1);
 				term[i] = term[i].substring(1);
-				ps.addPair(term[i].split(","), tag);
+				ps.addPair(tag, term[i]);
 			}
 			mPatternList.add(ps);
 		}

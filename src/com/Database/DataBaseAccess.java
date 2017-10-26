@@ -1,4 +1,4 @@
-package com.data.jdba;
+package com.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,26 +13,28 @@ public class DataBaseAccess {
 	private Statement st;
 	private ResultSet rs;
 	private TargetTable table;
-	
-	public static enum TargetTable{USER, GAME, FAVORITE, MESSAGE};
-	
-	public DataBaseAccess() throws ClassNotFoundException, SQLException{
-		 Class.forName("com.mysql.jdbc.Driver");
-		 conn = DriverManager.getConnection(datasource);
-		 st = conn.createStatement();
+
+	public static enum TargetTable {
+		USER, GAME, FAVORITE, MESSAGE
+	};
+
+	public DataBaseAccess() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection(datasource);
+		st = conn.createStatement();
 	}
-	
-	public void changeTable(TargetTable table){
+
+	public void changeTable(TargetTable table) {
 		this.table = table;
 	}
-	
+
 	class InsertAdapter {
-		public InsertAdapter(){
-			
+		public InsertAdapter() {
+
 		}
-		
-		public void insert(){
-			
+
+		public void insert() {
+
 		}
 	}
 }

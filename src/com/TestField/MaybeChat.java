@@ -1,4 +1,4 @@
-package com.test;
+package com.TestField;
 
 import com.BotModule.BotCommand;
 import com.BotModule.BotPenut;

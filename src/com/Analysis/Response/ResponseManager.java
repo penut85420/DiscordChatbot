@@ -6,12 +6,12 @@ import com.Analysis.Matchers;
 import com.Library.LibraryIO;
 import com.Library.LibraryUtil;
 
-public class NerdResponse {
+public class ResponseManager {
 	static final String ResponsePatternPath = "data\\pattern\\response\\ResponsePattern.dat";
 	
 	ArrayList<ResponseSrc> mResponse = new ArrayList<>();
 	
-	public NerdResponse() {
+	public ResponseManager() {
 		String[] lines = LibraryIO.readFileLines(ResponsePatternPath);
 		
 		for (String line: lines) {
@@ -54,7 +54,7 @@ public class NerdResponse {
 		m.add("player", "↖煞氣a小白↘");
 		m.add("info", "VR版");
 		
-		NerdResponse nr = new NerdResponse();
+		ResponseManager nr = new ResponseManager();
 		System.out.println(nr.toString());
 		// nr.getResponse("GameDifficult", 0, m);
 		// nr.getResponse("GameDifficult", 3, m);

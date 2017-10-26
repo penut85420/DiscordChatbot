@@ -2,7 +2,7 @@ package com.Analysis;
 
 import java.util.ArrayList;
 
-import com.Analysis.Pattern.NerdPattern;
+import com.Analysis.Acting.ActingManager;
 import com.Library.LibraryIO;
 
 public class Pair {
@@ -13,7 +13,7 @@ public class Pair {
 			setTag(tag);
 
 			if (tag.equals("&"))
-				word = LibraryIO.readFile(NerdPattern.DIR_PATH + word[0]).split("[ \r\n]");
+				word = LibraryIO.readFile(ActingManager.DIR_PATH + word[0]).split("[ \r\n]");
 
 			mWord = new ArrayList<String>();
 			for (String s : word)

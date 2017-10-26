@@ -1,14 +1,14 @@
-package com.Analysis.Pattern;
+package com.Analysis.Acting;
 
 import java.util.*;
 
 import com.Analysis.Pair;
 
-public class PatternSrc {
+public class ActingSrc {
 	String mPatternType;
 	ArrayList<Pair> mPair;
 
-	public PatternSrc(String type) {
+	public ActingSrc(String type) {
 		mPatternType = type;
 		mPair = new ArrayList<>();
 	}
@@ -17,7 +17,7 @@ public class PatternSrc {
 		mPair.add(new Pair(pair, tag));
 	}
 
-	public PatternMatch match(String sentence) {
+	public ActingMatch match(String sentence) {
 		String[] word = sentence.split(" ");
 		int[][] result = new int[mPair.size() + 1][word.length + 1];
 		String[][] dimension = new String[mPair.size() + 1][word.length + 1];

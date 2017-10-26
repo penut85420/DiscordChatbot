@@ -10,7 +10,7 @@ public class BotLeon {
 		ActingMatch m = am.match(msg);
 		// String type = ResponseManager.getResponseType(m.getPatternType);
 		// if (type != null)
-		// return ResponseManager.getResponse(m.getMatchers, 5);
+		// return ResponseManager.getResponse(type, m.getMatchers, 5);
 		
 		// Pattern match, get unknowns objects
 		// Make Matchers, Ex: matchers.add("game", "踩地雷");

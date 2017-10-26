@@ -2,7 +2,7 @@ package com.Library;
 
 public class LibraryUtil {
 	public static void main(String[] args) {
-		System.out.println(removeComment("// Comment").isEmpty());
+		System.out.println(removeComment("-GameDifficult"));
 	}
 	
 	public static void log(Object obj) {

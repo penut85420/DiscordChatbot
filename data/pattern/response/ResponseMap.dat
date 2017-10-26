@@ -1,11 +1,23 @@
 // UserActing BotResponse
-GameDifficult GameDifficult
-GameStuck GameDifficult
+Greeting GreetingReply
+Ending EndingReply
+Accept Thanks
+// steamResult ???
+// GameFun $GameFunReply
+// GameQuery $GameQueryReply
+// GameDealAsk $GameDealAskReply
+GameDifficult GameDifficultReply
+GameStuck GameDifficultReply
 GameStuck GamePlayInfo
-GameInfo GameInfo
+// GameStuck Comfort
+GameInfo GameInfoRepeat
 GamePlayRefuse GamePlayLoo
 GamePlayRefuse Angry
 GamePlayOver Thanks
 GamePlayOver ThanksForGamePlay
-GameDeal GameDeal
+// GameDeal $IsGameOnSale
+// AskGameNews $IsGameHasNews
 GameDealAsk GameDealReply
+GamePlayClear Congratulation
+GamePlayClear CongratulateAndAskForTeach
+// PlayerGoodAt PlayerWho

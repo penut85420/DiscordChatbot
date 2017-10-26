@@ -2,9 +2,6 @@ package com.Analysis;
 
 import java.util.ArrayList;
 
-import com.Analysis.Acting.ActingManager;
-import com.Library.LibraryIO;
-
 public class Pair {
 	ArrayList<String> mWord = new ArrayList<>();
 	private String mTag;
@@ -13,17 +10,6 @@ public class Pair {
 	static final String TagList = "&";
 	static final String TagIgnorable = "|";
 	static final String TagUnknown = "@";
-
-	@Deprecated
-	public Pair(String[] word, String tag) {
-		setTag(tag);
-
-		if (tag.equals(TagList))
-			word = LibraryIO.readFile(ActingManager.DIR_PATH + word[0]).split("[ \r\n]");
-
-		for (String s : word)
-			mWord.add(s);
-	}
 	
 	public Pair(String tag, String word) {
 		setTag(tag);

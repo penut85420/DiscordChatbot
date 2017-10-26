@@ -11,7 +11,7 @@ public class Unigram {
 	
 	// 單元測試
 	public static void unitTest() {
-		log(seg(SEN));
+		seg(SEN);
 	}
 	
 	public static String seg(String s) {
@@ -28,12 +28,12 @@ public class Unigram {
 			list.add(segList);
 		}
 		
-		log("Display List\n");
-		for (ArrayList<String> segList: list) { 
-			for (String seg: segList)
-				log(seg + " ");
-			log("\n");
-		}
+//		log("Display List\n");
+//		for (ArrayList<String> segList: list) { 
+//			for (String seg: segList)
+//				log(seg + " ");
+//			log("\n");
+//		}
 		
 		foo(list, 0, "");
 		

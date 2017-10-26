@@ -17,18 +17,21 @@
 #你是說 @game #最近出了 @info #嗎?
 
 // User破關某game
-#恭喜你打過 @game #! #可以教我嗎?
+#恭喜你打過 @game #!
+#可以教我嗎?
+
+// User拒絕提供策略
+#不要就不要
+
+// === 需要其他Function做處理
+
+// User詢問自己問過那些Game的折扣
+// #你問了 @game (#、 @game) #和 @game的特價資訊
 
 // User詢問game的折扣
 #你是在詢問 @game #的特價資訊嗎?
 @game #特價優惠 @deal #折
 @game #最近好像沒有優惠欸
-
-// User詢問自己問過那些Game的折扣
-// #你問了 @game (#、 @game) #和 @game的特價資訊
-
-// User拒絕提供策略
-#不要就不要
 
 // User詢問某game的新聞
 // Match > 80
@@ -39,4 +42,4 @@
 #沒有欸
 
 // User覺得某game很好玩
-//   新增game到User的興趣列表
+//  新增game到User的興趣列表資料庫

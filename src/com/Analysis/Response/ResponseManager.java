@@ -3,9 +3,10 @@ package com.Analysis.Response;
 import java.util.ArrayList;
 
 import com.Analysis.Matchers;
-import com.Library.LibraryIO;
-import com.Library.LibraryUtil;
+import com.Library.*;
+import static com.Library.LibraryUtil.log;
 
+@SuppressWarnings("unused")
 public class ResponseManager {
 	static final String ResponsePatternPath = "data\\pattern\\response\\ResponsePattern.dat";
 	
@@ -15,11 +16,18 @@ public class ResponseManager {
 	// 讀取ResponsePattern檔案
 	public ResponseManager() {
 		String[] lines = LibraryIO.readFileLines(ResponsePatternPath);
+		String type;
 		
 		for (String line: lines) {
 			// 前置處理
 			line = LibraryUtil.removeComment(line);
 			if (line.isEmpty()) continue;
+			
+			// Load Pattern Type
+			if (line.startsWith("-")) {
+				type = line.substring(1);
+				continue;
+			}
 			
 			// Pattern格式斷開
 			String[] seg = line.split(" ");

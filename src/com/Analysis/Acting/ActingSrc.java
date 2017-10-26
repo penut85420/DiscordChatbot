@@ -2,6 +2,8 @@ package com.Analysis.Acting;
 
 import java.util.*;
 import static com.Library.LibraryUtil.log;
+
+import com.Analysis.Matchers;
 import com.Analysis.Pair;
 
 public class ActingSrc {
@@ -12,7 +14,7 @@ public class ActingSrc {
 		mPatternType = type;
 		mPair = new ArrayList<>();
 	}
-	
+
 	public void addPair(String tag, String word) {
 		mPair.add(new Pair(tag, word));
 	}
@@ -92,23 +94,29 @@ public class ActingSrc {
 					j--;
 				} else if (dimension[i][j].equals("U")) {
 					i--;
-				} else if (dimension[i][j].equals("L")) {
-					/*
-					 * temp[x]=j; x++;
-					 */
+				} else if(dimension[i][j].equals("L") && i< mPair.size() && mPair.get(i).getTag().equals("@")){
 					AA.add(word[j - 1]);
+					j--;
+				}else if (dimension[i][j].equals("L")) {
 					j--;
 				}
 
 			}
-			
+			String tempSlot = "";
 			for (int y = AA.size() - 1; y > -1; y--) {
 				// log(word[temp[y]-1]+"\n");
-				log(AA.get(y) + " ");
+				tempSlot += AA.get(y);
+				//log(AA.get(y) + " ");
 			}
 			log("\n");
+			// Match Success
+			Matchers m = new Matchers();
+			m.add("game", tempSlot);
+			log (tempSlot+"\n");
+			return new ActingMatch(mPatternType, m);
 		}
 		log("\n");
+		// Match Failed
 		return null;
 	}
 

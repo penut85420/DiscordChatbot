@@ -15,7 +15,7 @@ public class ActingManager {
 	public static void main(String[] args) {
 		ActingManager np = new ActingManager();
 		np.unitTest();
-		np.match("嗨 肥宅");
+		//np.match("嗨 肥宅");
 		np.match("我 覺得 桐人 的 星爆氣流斬 好 難 喔 www");
 	}
 	
@@ -34,10 +34,12 @@ public class ActingManager {
 		}
 	}
 	
-	public void match(String sentence) {
+	public ActingMatch match(String sentence) {
 		for (ActingSrc ps: mPatternList) {
-			ps.match(sentence);
+			ActingMatch m = ps.match(sentence);
+			if (m != null) return m;
 		}
+		return null;
 	}
 	
 	public void unitTest() {

@@ -7,8 +7,8 @@ public class LibraryUtil {
 	
 	public static void log(Object obj) {
 		if (obj == null)
-			System.out.println("[null]");
-		else System.out.println(obj.toString());
+			System.out.print("[null]");
+		else System.out.print(obj.toString());
 	}
 	
 	public static String clipBracket(String s) {

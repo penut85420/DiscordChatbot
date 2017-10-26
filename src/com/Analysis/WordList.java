@@ -39,4 +39,8 @@ public class WordList {
 	public static void main(String[] args) {
 		LibraryUtil.log(getRandomWord("what"));
 	}
+
+	public static ArrayList<String> getWordList(String type) {
+		return mWordList.get(type);
+	}
 }

@@ -2,7 +2,8 @@ package com.Analysis.Acting;
 
 import java.util.*;
 
-import com.Library.LibraryIO;
+import com.Library.*;
+
 import static com.Library.LibraryUtil.log;
 
 public class ActingManager {
@@ -13,8 +14,9 @@ public class ActingManager {
 
 	public static void main(String[] args) {
 		ActingManager np = new ActingManager();
+		np.unitTest();
 		np.match("嗨 肥宅");
-		np.match("我 覺得 星爆 星 星 星 氣流斬 好 難 喔 www");
+		np.match("我 覺得 桐人 的 星爆氣流斬 好 難 喔 www");
 	}
 	
 	public ActingManager() {
@@ -40,6 +42,6 @@ public class ActingManager {
 	
 	public void unitTest() {
 		for (ActingSrc ps: mPatternList)
-			log(ps);
+			log(ps + "\n\n");
 	}
 }

@@ -1,7 +1,7 @@
 package com.Analysis.Acting;
 
 import java.util.*;
-
+import static com.Library.LibraryUtil.log;
 import com.Analysis.Pair;
 
 public class ActingSrc {
@@ -11,11 +11,6 @@ public class ActingSrc {
 	public ActingSrc(String type) {
 		mPatternType = type;
 		mPair = new ArrayList<>();
-	}
-
-	@Deprecated
-	public void addPair(String[] pair, String tag) {
-		mPair.add(new Pair(pair, tag));
 	}
 	
 	public void addPair(String tag, String word) {
@@ -63,18 +58,21 @@ public class ActingSrc {
 
 		log(mPatternType + "\n");
 		log(Arrays.toString(word) + "\n");
+		
 		for (int[] i : result) {
 			for (int j : i) {
 				log(j + " ");
 			}
 			log("\n");
 		}
+		
 		for (String[] i : dimension) {
 			for (String j : i) {
 				log(j + " ");
 			}
 			log("\n");
 		}
+		
 		int patternLength = 0;
 		for (int i = 0; i < mPair.size(); i++) {
 			if (!mPair.get(i).getTag().equals("@"))
@@ -103,17 +101,15 @@ public class ActingSrc {
 				}
 
 			}
+			
 			for (int y = AA.size() - 1; y > -1; y--) {
 				// log(word[temp[y]-1]+"\n");
-				log(AA.get(y));
+				log(AA.get(y) + " ");
 			}
 			log("\n");
 		}
+		log("\n");
 		return null;
-	}
-
-	private void log(Object obj) {
-		System.out.print(obj.toString());
 	}
 
 	public String toString() {

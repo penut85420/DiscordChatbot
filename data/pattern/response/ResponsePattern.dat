@@ -1,0 +1,28 @@
+-GameDifficult
+0-3 #你覺得 @game &正程度副詞 &困難形容詞 #嗎?
+2-5 @game #有這麼難 &驚訝顏文字
+3-7 #你覺得 @game &正程度副詞 &困難形容詞 #嗎 &End
+
+-GamePlayInfo
+0-9 @player #說他打過了 @game
+5-9 #你想不想知道 @player #怎麼打過的?
+
+-GameInfo
+0-9 #你是說 @game #最近出了 @info #嗎?
+
+-GamePlayLoo
+5-9 &歇斯底里
+
+-Angry
+0-5 &生氣
+
+-Thanks
+0-9 &感謝
+
+-ThanksForGamePlay
+0-9 #謝謝你提供的策略
+
+-GameDeal
+0-9 #你是在詢問 @game #的特價資訊嗎?
+0-9 @game #特價優惠 @deal #折
+0-9 @game #最近好像沒有優惠欸

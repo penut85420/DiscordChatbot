@@ -1,0 +1,42 @@
+// ============
+// User Acting
+// 計算@word出現幾次
+#count @word
+// 這要被歸類到BotCommand裡面
+
+// ============
+// Bot Response
+// GamePlayOver User講完攻略流程
+#謝謝你提供的策略
+
+// User覺得Game Stuck
+@player #說他打過了 @game
+#你想不想知道 @player #怎麼打過的?
+
+// User提供遊戲資訊
+#你是說 @game #最近出了 @info #嗎?
+
+// User破關某game
+#恭喜你打過 @game #! #可以教我嗎?
+
+// User詢問game的折扣
+#你是在詢問 @game #的特價資訊嗎?
+@game #特價優惠 @deal #折
+@game #最近好像沒有優惠欸
+
+// User詢問自己問過那些Game的折扣
+// #你問了 @game (#、 @game) #和 @game的特價資訊
+
+// User拒絕提供策略
+#不要就不要
+
+// User詢問某game的新聞
+// Match > 80
+#小道消息～ @news_title @news_link
+// Match > 0
+#你是指這個嗎? @news_title @news_link
+// No Match
+#沒有欸
+
+// User覺得某game很好玩
+//   新增game到User的興趣列表

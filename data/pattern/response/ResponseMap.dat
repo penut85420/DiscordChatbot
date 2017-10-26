@@ -1,0 +1,11 @@
+// UserActing BotResponse
+GameDifficult GameDifficult
+GameStuck GameDifficult
+GameStuck GamePlayInfo
+GameInfo GameInfo
+GamePlayRefuse GamePlayLoo
+GamePlayRefuse Angry
+GamePlayOver Thanks
+GamePlayOver ThanksForGamePlay
+GameDeal GameDeal
+GameDealAsk GameDealReply

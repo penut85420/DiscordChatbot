@@ -4,18 +4,19 @@ import java.util.ArrayList;
 
 import com.Analysis.Matchers;
 import com.Library.LibraryIO;
+import com.Library.LibraryUtil;
 
 public class NerdResponse {
-	static final String ResponsePath = "data\\pattern\\response.dat";
+	static final String ResponsePatternPath = "data\\pattern\\response\\ResponsePattern.dat";
 	
 	ArrayList<ResponseSrc> mResponse = new ArrayList<>();
 	
 	public NerdResponse() {
-		String[] lines = LibraryIO.readFileLines(ResponsePath);
+		String[] lines = LibraryIO.readFileLines(ResponsePatternPath);
 		
 		for (String line: lines) {
+			line = LibraryUtil.removeComment(line);
 			if (line.isEmpty()) continue;
-			if (line.startsWith("//")) continue;
 			
 			String[] seg = line.split(" ");
 			int[] bound = getBound(seg[0]);
@@ -49,13 +50,15 @@ public class NerdResponse {
 	
 	public static void main(String[] args) {
 		Matchers m = new Matchers();
-		m.add("game", "星爆氣流斬");
+		m.add("game", "踩地雷");
+		m.add("player", "↖煞氣a小白↘");
+		m.add("info", "VR版");
 		
 		NerdResponse nr = new NerdResponse();
 		System.out.println(nr.toString());
-		// nr.getResponse("GameDifficult", 0);
-		// nr.getResponse("GameDifficult", 3);
-		// nr.getResponse("GameDifficult", 5);
-		// nr.getResponse("GameDifficult", 7);
+		// nr.getResponse("GameDifficult", 0, m);
+		// nr.getResponse("GameDifficult", 3, m);
+		// nr.getResponse("GameDifficult", 5, m);
+		// nr.getResponse("GameDifficult", 7, m);
 	}
 }

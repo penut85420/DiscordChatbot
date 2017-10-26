@@ -20,7 +20,4 @@ public class DataBaseAccess {
 		 conn = DriverManager.getConnection(datasource);
 		 st = conn.createStatement();
 	}
-	
- 
-	
 }

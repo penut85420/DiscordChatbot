@@ -11,7 +11,36 @@ public class Unigram {
 	
 	// 單元測試
 	public static void unitTest() {
+		log("Test\n");
+		// seg2(SEN);
 		seg(SEN);
+	}
+	
+	public static void seg2(String s) {
+		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+		
+		int len = s.length();
+		for (int i = 0; i < len; i++) {
+			ArrayList<Integer> segList = new ArrayList<>();
+			for (int j = i + 1; j < len; j++) {
+				String nowSeg = s.substring(i, j + 1);
+				if (nowSeg.equals(mm(nowSeg)))
+					segList.add(nowSeg.length());
+			}
+			list.add(segList);
+		}
+		
+		log("Display List\n");
+		for (ArrayList<Integer> segList: list) { 
+			for (Integer i: segList)
+				log(i + " ");
+			log("\n");
+		}
+	}
+	
+	public static void foo2(ArrayList<ArrayList<String>> list, int index, String now) {
+		if (index >= list.size()) { log(now + "\n"); return; }
+		
 	}
 	
 	public static String seg(String s) {
@@ -23,7 +52,7 @@ public class Unigram {
 			for (int j = i; j < len; j++) {
 				String nowSeg = s.substring(i, j + 1);
 				if (nowSeg.equals(mm(nowSeg)))
-					segList.add(nowSeg);
+					segList.add(nowSeg.trim());
 			}
 			list.add(segList);
 		}
@@ -41,10 +70,13 @@ public class Unigram {
 	}
 	
 	private static void foo(ArrayList<ArrayList<String>> list, int index, String now) {
-		if (index >= list.size()) { log(now + "\n"); return; }
+		// log("index: " + index + " ");
+		if (index == list.size()) { log("[" + now.trim() + "]\n"); return; }
+		if (index > list.size()) return;
+		
 		for (String seg: list.get(index)) {
-			now += seg + " ";
-			foo(list, index + seg.length(), now);
+			// log(now + ", " + seg + ", " + seg.length() + "\n");
+			foo(list, index + seg.length(), now + seg + " ");
 		}
 	}
 	

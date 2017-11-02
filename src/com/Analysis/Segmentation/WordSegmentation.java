@@ -12,7 +12,7 @@ public class WordSegmentation {
 	static final String TinyDictionaryPath = "data\\dictionary\\dictionary_small.txt";
 	
 	// static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);
-	static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, null);
+	static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, UserDictionaryPath);
 	
 	public static void main(String[] args) throws Exception {
 		unitTest1();

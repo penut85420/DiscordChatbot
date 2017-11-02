@@ -33,11 +33,11 @@ public class DataBaseAccess {
 		this.table = table;
 	}
 
-	public void insert(String table, String value, String order) throws SQLException{
-		st.execute("INSERT INTO " + table + "value");
+	public void insert(String table, String value) throws SQLException{
+		st.execute("INSERT INTO " + table + " value " + value);
 	}
 	
-	public void select(){
-		
+	public void select(String targetCol, String targetTable, String condition, String order) throws SQLException{
+		st.execute("SELECT " + targetCol + "FROM" + targetTable + " WHERE " + condition + " ORDER BY " +order);
 	}
 }

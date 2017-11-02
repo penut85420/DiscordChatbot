@@ -12,4 +12,11 @@ public class Matchers {
 	public String get(String key) {
 		return mMatch.get(key.trim().toLowerCase());
 	}
+	
+	public String toString() {
+		String s = "";
+		for (String key: mMatch.keySet())
+			s += "Key: " + key + ", Value: " + mMatch.get(key) + "\n";
+		return s;
+	}
 }

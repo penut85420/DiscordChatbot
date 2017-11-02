@@ -28,7 +28,7 @@ public class ResponseSrc {
 		for (Pair p: mPair) {
 			String seg = p.getRndPair();
 			
-			if (seg == null && p.isTagUnknown())
+			if (seg == null && p.isTagSlot())
 				seg = m.get(p.getTagName());
 			s += seg;
 		}

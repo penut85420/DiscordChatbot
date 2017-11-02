@@ -11,8 +11,8 @@ public class Pair {
 	
 	static final String TagEnum = "#";
 	static final String TagList = "&";
-	static final String TagIgnorable = "|";
-	static final String TagUnknown = "@";
+	static final String TagOption = "|";
+	static final String TagSlot = "@";
 	static final String TagBreakLine = "\\";
 	
 	public Pair(String tag, String word) {
@@ -28,7 +28,7 @@ public class Pair {
 	public String getTagName() { return mTagName; }
 	
 	public boolean isTagList() { return mTag.equals(TagList); }
-	public boolean isTagUnknown() { return mTag.equals(TagUnknown); }
+	public boolean isTagSlot() { return mTag.equals(TagSlot); }
 	public boolean isTagBreakLine() { return mTag.equals(TagBreakLine); }
 	
 	public ArrayList<String> getWordList() {
@@ -38,7 +38,7 @@ public class Pair {
 	
 	public String getRndPair() {
 		if (isTagBreakLine()) return "\n";
-		if (isTagUnknown()) return null;
+		if (isTagSlot()) return null;
 		ArrayList<String> arr = getWordList();
 		return arr.get(LibraryMath.getRandNum(arr.size()));
 	}

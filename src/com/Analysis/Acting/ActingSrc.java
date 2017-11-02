@@ -60,21 +60,21 @@ public class ActingSrc {
 
 		log(mPatternType + "\n");
 		log(Arrays.toString(word) + "\n");
-		
+
 		for (int[] i : result) {
 			for (int j : i) {
 				log(j + " ");
 			}
 			log("\n");
 		}
-		
+
 		for (String[] i : dimension) {
 			for (String j : i) {
 				log(j + " ");
 			}
 			log("\n");
 		}
-		
+
 		int patternLength = 0;
 		for (int i = 0; i < mPair.size(); i++) {
 			if (!mPair.get(i).getTag().equals("@"))
@@ -90,55 +90,56 @@ public class ActingSrc {
 			int j = word.length;
 			int tempSlotSpot = 0;
 			// int x = 0;
+
 			boolean startGetSlot = false;
+
 			while (i > 0 && j > 0) {
+
 				if (dimension[i][j].equals("C")) {
 					i--;
 					j--;
-					if(i!=0 && j!=0 && !dimension[i][j].equals("C")  && mPair.get(i-1).getTag().equals("@")) // i-1是因為pair跟word都為0開始 dimension的0為空
-						tempSlotSpot = i-1;
-						startGetSlot = true;
-				} 
-				else if (dimension[i][j].equals("U")) {
+					if (i != 0 && j != 0 && !dimension[i][j].equals("C") && mPair.get(i - 1).getTag().equals("@")) // i-1是因為pair跟word都為0開始
+																													// dimension的0為空
+						tempSlotSpot = i - 1;
+					startGetSlot = true;
+				} else if (dimension[i][j].equals("U")) {
 					i--;
-				} 
+
+				}
 
 				else {
-					if(startGetSlot)
+					if (startGetSlot)
 						AA.add(word[j - 1]);
 					j--;
-					if(!dimension[i][j].equals("L")){
+					if (!dimension[i][j].equals("L")) {
 						String tempSlot = "";
-						for (int y = AA.size() - 1; y > -1; y--) 
+						for (int y = AA.size() - 1; y > -1; y--)
 							tempSlot += AA.get(y);
 						AA.clear();
-						log(tempSlot +"\n");
-						//log(mPair.get(tempSlotSpot).getTagName() +" "+ tempSlot +"\n");
+						log(tempSlot + "\n");
+						// log(mPair.get(tempSlotSpot).getTagName() +" "+
+						// tempSlot +"\n");
 						m.add(mPair.get(tempSlotSpot).getTagName(), tempSlot);
 						startGetSlot = false;
 					}
 				}
-				/*else if(dimension[i][j].equals("L") && i< mPair.size() && mPair.get(i).isTagUnknown()){
-					AA.add(word[j - 1]);
-					log(dimension[i][j]+"\n");
-					log(mPair.get(i).getTagName() +" "+word[j-1]+"\n");
-					if(dimension[i][j-1].equals("C") || dimension[i][j-1].equals(null)){
-						String tempSlot = "";
-						for (int y = AA.size() - 1; y > -1; y--) 
-							tempSlot += AA.get(y);
-						AA.clear();
-						log (tempSlot+"\n");
-						m.add(mPair.get(i).getTagName(), tempSlot);
-					}
-					j--;
-				}*/
+				/*
+				 * else if(dimension[i][j].equals("L") && i< mPair.size() &&
+				 * mPair.get(i).isTagUnknown()){ AA.add(word[j - 1]);
+				 * log(dimension[i][j]+"\n"); log(mPair.get(i).getTagName()
+				 * +" "+word[j-1]+"\n"); if(dimension[i][j-1].equals("C") ||
+				 * dimension[i][j-1].equals(null)){ String tempSlot = ""; for
+				 * (int y = AA.size() - 1; y > -1; y--) tempSlot += AA.get(y);
+				 * AA.clear(); log (tempSlot+"\n");
+				 * m.add(mPair.get(i).getTagName(), tempSlot); } j--; }
+				 */
 			}
-			
+
 			log("\n");
 			// Match Success
-			
-			
-			//log (tempSlot+"\n");
+
+			// log (tempSlot+"\n");
+
 			return new ActingMatch(mPatternType, m);
 		}
 		log("\n");

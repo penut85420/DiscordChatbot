@@ -16,33 +16,6 @@ public class Unigram {
 		seg(SEN);
 	}
 	
-	public static void seg2(String s) {
-		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
-		
-		int len = s.length();
-		for (int i = 0; i < len; i++) {
-			ArrayList<Integer> segList = new ArrayList<>();
-			for (int j = i + 1; j < len; j++) {
-				String nowSeg = s.substring(i, j + 1);
-				if (nowSeg.equals(mm(nowSeg)))
-					segList.add(nowSeg.length());
-			}
-			list.add(segList);
-		}
-		
-		log("Display List\n");
-		for (ArrayList<Integer> segList: list) { 
-			for (Integer i: segList)
-				log(i + " ");
-			log("\n");
-		}
-	}
-	
-	public static void foo2(ArrayList<ArrayList<String>> list, int index, String now) {
-		if (index >= list.size()) { log(now + "\n"); return; }
-		
-	}
-	
 	public static String seg(String s) {
 		ArrayList<ArrayList<String>> list = new ArrayList<>();
 		

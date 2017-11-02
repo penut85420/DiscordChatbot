@@ -11,7 +11,7 @@ public class FindGNNNews {
 	
 	public static void main(String[] args) {
 		System.out.println(Arrays.toString(mNewsTitleList.toArray()).replaceAll(", ", "\n"));
-		System.out.println(matchTitle("英雄聯盟"));
+		System.out.println(matchTitle("音速小子 武力"));
 	}
 
 	public static ArrayList<NewsTitle> init() {

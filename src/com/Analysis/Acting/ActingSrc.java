@@ -60,21 +60,21 @@ public class ActingSrc {
 
 		log(mPatternType + "\n");
 		log(Arrays.toString(word) + "\n");
-		
+
 		for (int[] i : result) {
 			for (int j : i) {
 				log(j + " ");
 			}
 			log("\n");
 		}
-		
+
 		for (String[] i : dimension) {
 			for (String j : i) {
 				log(j + " ");
 			}
 			log("\n");
 		}
-		
+
 		int patternLength = 0;
 		for (int i = 0; i < mPair.size(); i++) {
 			if (!mPair.get(i).getTag().equals("@"))
@@ -88,31 +88,44 @@ public class ActingSrc {
 			int i = mPair.size();
 			int j = word.length;
 			// int x = 0;
+			Matchers m = new Matchers();
 			while (i > 0 && j > 0) {
+
 				if (dimension[i][j].equals("C")) {
 					i--;
 					j--;
 				} else if (dimension[i][j].equals("U")) {
 					i--;
-				} else if(dimension[i][j].equals("L") && i< mPair.size() && mPair.get(i).getTag().equals("@")){
-					AA.add(word[j - 1]);
-					j--;
-				}else if (dimension[i][j].equals("L")) {
+				} else if (dimension[i][j].equals("L") && i < mPair.size() && mPair.get(i).isTagSlot()) {
+					AA.add(word[--j]);
+					if (j == 0 || dimension[i][j].equals("L")) {
+						String tempSlot = "";
+						for (int y = AA.size() - 1; y > -1; y--)
+							tempSlot += AA.get(y);
+						m.add(mPair.get(i).getWordList().get(0), tempSlot);
+						//log(tempSlot + "\n");
+						log(m);
+						AA.clear();
+					}
+
+				} else if (dimension[i][j].equals("L")) {
 					j--;
 				}
 
 			}
+			
 			String tempSlot = "";
 			for (int y = AA.size() - 1; y > -1; y--) {
 				// log(word[temp[y]-1]+"\n");
 				tempSlot += AA.get(y);
-				//log(AA.get(y) + " ");
+				// log(AA.get(y) + " ");
 			}
 			log("\n");
 			// Match Success
-			Matchers m = new Matchers();
-			m.add("game", tempSlot);
-			log (tempSlot+"\n");
+			/*
+			 * Matchers m = new Matchers(); m.add("game", tempSlot);
+			 */
+
 			return new ActingMatch(mPatternType, m);
 		}
 		log("\n");

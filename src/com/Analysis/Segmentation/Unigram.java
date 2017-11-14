@@ -11,6 +11,8 @@ public class Unigram {
 	
 	// 單元測試
 	public static void unitTest() {
+		log("Test\n");
+		// seg2(SEN);
 		seg(SEN);
 	}
 	
@@ -23,7 +25,7 @@ public class Unigram {
 			for (int j = i; j < len; j++) {
 				String nowSeg = s.substring(i, j + 1);
 				if (nowSeg.equals(mm(nowSeg)))
-					segList.add(nowSeg);
+					segList.add(nowSeg.trim());
 			}
 			list.add(segList);
 		}
@@ -41,10 +43,13 @@ public class Unigram {
 	}
 	
 	private static void foo(ArrayList<ArrayList<String>> list, int index, String now) {
-		if (index >= list.size()) { log(now + "\n"); return; }
+		// log("index: " + index + " ");
+		if (index == list.size()) { log("[" + now.trim() + "]\n"); return; }
+		if (index > list.size()) return;
+		
 		for (String seg: list.get(index)) {
-			now += seg + " ";
-			foo(list, index + seg.length(), now);
+			// log(now + ", " + seg + ", " + seg.length() + "\n");
+			foo(list, index + seg.length(), now + seg + " ");
 		}
 	}
 	

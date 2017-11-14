@@ -2,7 +2,7 @@ package com.Analysis.Response;
 
 import java.util.*;
 
-import com.Analysis.Pair;
+import com.Analysis.*;
 
 public class ResponseSrc {
 	int mFriendlyLowBound;
@@ -18,6 +18,21 @@ public class ResponseSrc {
 	
 	public void addPair(String tag, String word) {
 		mPair.add(new Pair(tag, word));
+	}
+	
+	public String getResponseType() { return mResponseType; }
+	
+	public String makeReponse(Matchers m) {
+		String s = "";
+		
+		for (Pair p: mPair) {
+			String seg = p.getRndPair();
+			
+			if (seg == null && p.isTagSlot())
+				seg = m.get(p.getTagName());
+			s += seg;
+		}
+		return s;
 	}
 	
 	public String toString() {

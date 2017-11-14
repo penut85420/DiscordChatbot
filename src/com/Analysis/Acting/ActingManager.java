@@ -16,7 +16,7 @@ public class ActingManager {
 		ActingManager np = new ActingManager();
 		np.unitTest();
 		//np.match("嗨 肥宅");
-		np.match("我 覺得 桐人 的 星爆氣流斬 好 難 喔 www");
+		np.match("我 覺得 桐人 星爆 星爆氣流斬 好 難 喔 www");
 	}
 	
 	public ActingManager() {

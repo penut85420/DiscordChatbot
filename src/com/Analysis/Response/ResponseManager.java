@@ -11,12 +11,12 @@ public class ResponseManager {
 	static final String ResponsePatternPath = "data\\pattern\\response\\ResponsePattern.dat";
 	
 	// 所有Response結構的集合
-	ArrayList<ResponseSrc> mResponse = new ArrayList<>();
+	ArrayList<ResponseSrc> mResponseList = new ArrayList<>();
 	
 	// 讀取ResponsePattern檔案
 	public ResponseManager() {
 		String[] lines = LibraryIO.readFileLines(ResponsePatternPath);
-		String type;
+		String type = null;
 		
 		for (String line: lines) {
 			// 前置處理
@@ -34,14 +34,14 @@ public class ResponseManager {
 			
 			// 獲得情緒指數的高低值
 			int[] bound = getBound(seg[0]);
-			ResponseSrc rs = new ResponseSrc(bound[0], bound[1], seg[1]);
+			ResponseSrc rs = new ResponseSrc(bound[0], bound[1], type);
 			
 			// 將Pattern的每個Seg加入Pattern結構中
-			for (int i = 2; i < seg.length; i++) 
+			for (int i = 1; i < seg.length; i++) 
 				rs.addPair(seg[i].substring(0, 1), seg[i].substring(1));
 			
 			// 將Pattern結構加入Pattern集合中
-			mResponse.add(rs);
+			mResponseList.add(rs);
 		}
 	}
 	
@@ -62,9 +62,18 @@ public class ResponseManager {
 	// 將此結構的集合輸出成字串
 	public String toString() {
 		String s = "";
-		for (ResponseSrc rs: mResponse)
+		for (ResponseSrc rs: mResponseList)
 			s += rs.toString() + "\n\n";
 		return s;
+	}
+	
+	// 產生隨機的Response
+	public String getResponse(String type, int emotion, Matchers matchers) {
+		for (ResponseSrc rs: mResponseList) {
+			if (rs.getResponseType().toLowerCase().equals(type.toLowerCase()))
+				System.out.println(rs.makeReponse(matchers));
+		}
+		return null;
 	}
 	
 	public static void main(String[] args) {
@@ -74,10 +83,11 @@ public class ResponseManager {
 		m.add("info", "VR版");
 		
 		ResponseManager nr = new ResponseManager();
-		System.out.println(nr.toString());
-		// nr.getResponse("GameDifficult", 0, m);
-		// nr.getResponse("GameDifficult", 3, m);
-		// nr.getResponse("GameDifficult", 5, m);
-		// nr.getResponse("GameDifficult", 7, m);
+		//System.out.println(nr.toString());
+		nr.getResponse("GameDifficultReply", 0, m);
+//		nr.getResponse("GameDifficultReply", 3, m);
+//		nr.getResponse("GameDifficultReply", 5, m);
+//		nr.getResponse("GameDifficultReply", 7, m);
+		System.out.println("Done");
 	}
 }

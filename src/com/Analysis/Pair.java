@@ -2,31 +2,45 @@ package com.Analysis;
 
 import java.util.ArrayList;
 
+import com.Library.LibraryMath;
+
 public class Pair {
 	ArrayList<String> mWord = new ArrayList<>();
-	private String mTag;
+	String mTag;
+	String mTagName;
 	
 	static final String TagEnum = "#";
 	static final String TagList = "&";
-	static final String TagIgnorable = "|";
-	static final String TagUnknown = "@";
+	static final String TagOption = "|";
+	static final String TagSlot = "@";
+	static final String TagBreakLine = "\\";
 	
 	public Pair(String tag, String word) {
-		setTag(tag);
+		mTag = tag;
+		mTagName = word;
 		
 		for (String s: word.split(","))
 			mWord.add(s);
 	}
 
 	public String getTag() { return mTag; }
-
-	public void setTag(String mTag) { this.mTag = mTag; }
+	
+	public String getTagName() { return mTagName; }
 	
 	public boolean isTagList() { return mTag.equals(TagList); }
-
+	public boolean isTagSlot() { return mTag.equals(TagSlot); }
+	public boolean isTagBreakLine() { return mTag.equals(TagBreakLine); }
+	
 	public ArrayList<String> getWordList() {
 		if (isTagList()) return WordList.getWordList(mWord.get(0));
 		return mWord;
+	}
+	
+	public String getRndPair() {
+		if (isTagBreakLine()) return "\n";
+		if (isTagSlot()) return null;
+		ArrayList<String> arr = getWordList();
+		return arr.get(LibraryMath.getRandNum(arr.size()));
 	}
 
 	public boolean isMatch(String s) {

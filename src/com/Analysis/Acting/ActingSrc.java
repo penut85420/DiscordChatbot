@@ -83,6 +83,19 @@ public class ActingSrc {
 
 		if (result[mPair.size()][word.length] == patternLength) {
 			log("MATCH!!\n");
+			
+			for(int e = 0;e<mPair.size();e++){
+				if(mPair.get(e).getTagName() == "player")
+					//get playerlist
+					//先假設player只有一個並名為 煞氣的小白(會被斷開)
+				{
+					String temp ="";
+					for(int u=0;u<word.length;u++)
+						temp = temp + word[u];
+					//將 word中為煞氣的小白此字替換掉?
+				}
+			}
+			
 			Matchers m = new Matchers();
 			// int[] temp = new int[10];
 			ArrayList<String> AA = new ArrayList<String>();
@@ -92,15 +105,14 @@ public class ActingSrc {
 			// int x = 0;
 
 			boolean startGetSlot = false;
-
 			while (i > 0 && j > 0) {
 
 				if (dimension[i][j].equals("C")) {
 					i--;
 					j--;
-					if (i != 0 && j != 0 && !dimension[i][j].equals("C") && mPair.get(i - 1).getTag().equals("@")) // i-1是因為pair跟word都為0開始
-																													// dimension的0為空
+					if (i != 0 && j != 0 && !dimension[i][j].equals("C") && mPair.get(i - 1).getTag().equals("@")){ // i-1是因為pair跟word都為0開始  dimension的0為空
 						tempSlotSpot = i - 1;
+				}
 					startGetSlot = true;
 				} else if (dimension[i][j].equals("U")) {
 					i--;

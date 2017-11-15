@@ -9,13 +9,18 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Date;
+
+import com.Database.DataBaseAccess;
+
 import java.text.SimpleDateFormat;
 
 public class SteamDeal {
 	private final String steamSaleUrl = "http://store.steampowered.com/feeds/daily_deals.xml";
 	private final String filename = "daily_deals.xml";
+	private DataBaseAccess dbc;
 	
-	public SteamDeal(){
+	public SteamDeal(DataBaseAccess dbc){
+		this.dbc = dbc;
 		getSalePage();
 		parse();
 	}
@@ -59,6 +64,7 @@ public class SteamDeal {
 			}
 			System.out.println(title + "\n"+ id);
 			
+			//dbc.insert("", "(");
 			//dataList.add(new data(title, id));
 			
 			s = s.substring(s.indexOf("</item>") + "</item>".length());

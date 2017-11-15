@@ -1,6 +1,7 @@
 package com.Analysis.Response;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.Analysis.Matchers;
 import com.Library.*;
@@ -11,21 +12,25 @@ public class ResponseManager {
 	static final String ResponsePatternPath = "data\\pattern\\response\\ResponsePattern.dat";
 	
 	// 所有Response結構的集合
-	ArrayList<ResponseSrc> mResponseList = new ArrayList<>();
+	static HashMap<String, ArrayList<ResponseSrc>> mResponseMap = init();
 	
 	// 讀取ResponsePattern檔案
-	public ResponseManager() {
+	public static HashMap<String, ArrayList<ResponseSrc>> init() {
+		HashMap<String, ArrayList<ResponseSrc>> map = new HashMap<>();
+		ArrayList<ResponseSrc> list = new ArrayList<>();
 		String[] lines = LibraryIO.readFileLines(ResponsePatternPath);
 		String type = null;
 		
 		for (String line: lines) {
-			// 前置處理
+			// 前置Comment處理
 			line = LibraryUtil.removeComment(line);
 			if (line.isEmpty()) continue;
 			
 			// Load Pattern Type
 			if (line.startsWith("-")) {
 				type = line.substring(1);
+				list = new ArrayList<>();
+				map.put(type.toLowerCase(), list);
 				continue;
 			}
 			
@@ -41,12 +46,14 @@ public class ResponseManager {
 				rs.addPair(seg[i].substring(0, 1), seg[i].substring(1));
 			
 			// 將Pattern結構加入Pattern集合中
-			mResponseList.add(rs);
+			list.add(rs);
 		}
+		
+		return map;
 	}
 	
 	// 將情緒指數高低的字串格式轉成兩個整數，Ex: "0-9" > {0, 9}
-	private int[] getBound(String s) {
+	private static int[] getBound(String s) {
 		String[] ss = s.split("-");
 		int[] bound = new int[] {Integer.parseInt(ss[0]), Integer.parseInt(ss[1])};
 		
@@ -62,18 +69,19 @@ public class ResponseManager {
 	// 將此結構的集合輸出成字串
 	public String toString() {
 		String s = "";
-		for (ResponseSrc rs: mResponseList)
-			s += rs.toString() + "\n\n";
+		for (ArrayList<ResponseSrc> arr: mResponseMap.values())
+			for (ResponseSrc rs: arr)
+				s += rs.toString() + "\n\n";
 		return s;
 	}
 	
 	// 產生隨機的Response
-	public String getResponse(String type, int emotion, Matchers matchers) {
-		for (ResponseSrc rs: mResponseList) {
-			if (rs.getResponseType().toLowerCase().equals(type.toLowerCase()))
-				System.out.println(rs.makeReponse(matchers));
-		}
-		return null;
+	public static String getResponse(String type, int emotion, Matchers matchers) {
+		ArrayList<ResponseSrc> arr = mResponseMap.get(type.toLowerCase());
+		if (arr == null) return null;
+		
+		int r = LibraryMath.getRandNum(arr.size());
+		return arr.get(r).makeReponse(matchers);
 	}
 	
 	public static void main(String[] args) {
@@ -82,9 +90,7 @@ public class ResponseManager {
 		m.add("player", "↖煞氣a小白↘");
 		m.add("info", "VR版");
 		
-		ResponseManager nr = new ResponseManager();
-		//System.out.println(nr.toString());
-		nr.getResponse("GameDifficultReply", 0, m);
+		getResponse("GameDifficultReply", 0, m);
 //		nr.getResponse("GameDifficultReply", 3, m);
 //		nr.getResponse("GameDifficultReply", 5, m);
 //		nr.getResponse("GameDifficultReply", 7, m);

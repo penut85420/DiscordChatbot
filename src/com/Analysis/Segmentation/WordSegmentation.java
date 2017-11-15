@@ -11,8 +11,8 @@ public class WordSegmentation {
 	static final String UserDictionaryPath = "data\\dictionary\\dictionary_user.txt";
 	static final String TinyDictionaryPath = "data\\dictionary\\dictionary_small.txt";
 	
-	// static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);
-	static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, UserDictionaryPath);
+	static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);
+	// static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, UserDictionaryPath);
 	
 	public static void main(String[] args) throws Exception {
 		unitTest1();

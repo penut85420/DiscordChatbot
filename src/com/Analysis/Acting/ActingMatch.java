@@ -10,4 +10,11 @@ public class ActingMatch {
 		mMatchType = type;
 		mMatchers = matchers;
 	}
+	
+	public String getType() { return mMatchType; }
+	public Matchers getMatchers() { return mMatchers; }
+	
+	public String toString() {
+		return "MatchType: " + mMatchType + "\n" + mMatchers.toString();
+	}
 }

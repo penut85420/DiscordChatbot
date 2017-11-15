@@ -7,20 +7,21 @@ import com.Library.*;
 import static com.Library.LibraryUtil.log;
 
 public class ActingManager {
-	public static String DIR_PATH = "data/pattern/";
-	private static String FILE_PATTERN = "pattern.dat";
-	
-	ArrayList<ActingSrc> mPatternList = new ArrayList<>();
+	static final String DATA_PATH = "data\\pattern\\pattern.dat";
+
+	static ArrayList<ActingSrc> mPatternList = initPatternList();
 
 	public static void main(String[] args) {
-		ActingManager np = new ActingManager();
-		np.unitTest();
-		//np.match("嗨 肥宅");
-		np.match("我 覺得 桐人 星爆 星爆氣流斬 好 難 喔 www");
+		// unitTest();
+		// match("嗨 肥宅");
+		// ActingMatch am = ActingManager.match("我 覺得 桐人 星爆 星爆氣流斬 好 難 喔 www");
+		ActingMatch am = match("我 覺得 星爆氣流斬 好 難");
+		System.out.println(am);
 	}
 	
-	public ActingManager() {
-		String[] pattern = LibraryIO.readFileLines(DIR_PATH + FILE_PATTERN);
+	public static ArrayList<ActingSrc> initPatternList() {
+		ArrayList<ActingSrc> list = new ArrayList<>();
+		String[] pattern = LibraryIO.readFileLines(DATA_PATH);
 		
 		for (String p: pattern) {
 			String[] term = p.split(" ");
@@ -30,11 +31,13 @@ public class ActingManager {
 				term[i] = term[i].substring(1);
 				ps.addPair(tag, term[i]);
 			}
-			mPatternList.add(ps);
+			list.add(ps);
 		}
+		
+		return list;
 	}
 	
-	public ActingMatch match(String sentence) {
+	public static ActingMatch match(String sentence) {
 		for (ActingSrc ps: mPatternList) {
 			ActingMatch m = ps.match(sentence);
 			if (m != null) return m;
@@ -42,7 +45,7 @@ public class ActingManager {
 		return null;
 	}
 	
-	public void unitTest() {
+	public static void unitTest() {
 		for (ActingSrc ps: mPatternList)
 			log(ps + "\n\n");
 	}

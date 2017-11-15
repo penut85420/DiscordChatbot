@@ -58,22 +58,22 @@ public class ActingSrc {
 			}
 		}
 
-		log(mPatternType + "\n");
-		log(Arrays.toString(word) + "\n");
+		// log(mPatternType + "\n");
+		// log(Arrays.toString(word) + "\n");
 
-		for (int[] i : result) {
-			for (int j : i) {
-				log(j + " ");
-			}
-			log("\n");
-		}
-
-		for (String[] i : dimension) {
-			for (String j : i) {
-				log(j + " ");
-			}
-			log("\n");
-		}
+//		for (int[] i : result) {
+//			for (int j : i) {
+//				log(j + " ");
+//			}
+//			log("\n");
+//		}
+//
+//		for (String[] i : dimension) {
+//			for (String j : i) {
+//				log(j + " ");
+//			}
+//			log("\n");
+//		}
 
 		int patternLength = 0;
 		for (int i = 0; i < mPair.size(); i++) {
@@ -82,7 +82,7 @@ public class ActingSrc {
 		}
 
 		if (result[mPair.size()][word.length] == patternLength) {
-			log("MATCH!!\n");
+			// log("MATCH!!\n");
 			Matchers m = new Matchers();
 			// int[] temp = new int[10];
 			ArrayList<String> AA = new ArrayList<String>();
@@ -116,7 +116,7 @@ public class ActingSrc {
 						for (int y = AA.size() - 1; y > -1; y--)
 							tempSlot += AA.get(y);
 						AA.clear();
-						log(tempSlot + "\n");
+						// log(tempSlot + "\n");
 						// log(mPair.get(tempSlotSpot).getTagName() +" "+
 						// tempSlot +"\n");
 						m.add(mPair.get(tempSlotSpot).getTagName(), tempSlot);
@@ -135,14 +135,14 @@ public class ActingSrc {
 				 */
 			}
 
-			log("\n");
+			// log("\n");
 			// Match Success
 
 			// log (tempSlot+"\n");
 
 			return new ActingMatch(mPatternType, m);
 		}
-		log("\n");
+		// log("\n");
 		// Match Failed
 		return null;
 	}

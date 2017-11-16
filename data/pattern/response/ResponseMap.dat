@@ -21,3 +21,4 @@ GameDealAsk GameDealReply
 GamePlayClear Congratulation
 GamePlayClear CongratulateAndAskForTeach
 // PlayerGoodAt PlayerWho
+TestPattern TestResponse

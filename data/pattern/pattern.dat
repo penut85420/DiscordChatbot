@@ -20,3 +20,5 @@
 -GamePlayOver |大概 #就這樣
 -AskGameNews #有沒有 @game #的 #八卦,消息,新聞
 -PlayerGoodAt #聽說 @player #的 @game #還蠻強的
+-TestPattern #換行
+-Greeting &Greeting

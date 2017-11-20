@@ -7,7 +7,7 @@ public class BotLeon {
 	public String Fooo(String msg) {
 		// Msg input
 		ActingManager am = new ActingManager();
-		ActingMatch m = am.match(msg);
+		// ActingMatch m = am.match(msg);
 		// String type = ResponseManager.getResponseType(m.getPatternType);
 		// if (type != null)
 		// return ResponseManager.getResponse(type, m.getMatchers, 5);

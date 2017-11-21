@@ -9,7 +9,7 @@ import static com.Library.LibraryUtil.log;
 
 @SuppressWarnings("unused")
 public class ResponseManager {
-	static final String ResponsePatternPath = "data\\pattern\\response\\ResponsePattern.dat";
+	static final String ResponsePatternPath = "data\\pattern\\Response\\ResponsePattern.dat";
 	
 	// 所有Response結構的集合
 	static HashMap<String, ArrayList<ResponseSrc>> mResponseMap = init();

@@ -7,31 +7,32 @@ import com.Library.*;
 import static com.Library.LibraryUtil.log;
 
 public class ActingManager {
-	static final String DATA_PATH = "data\\pattern\\pattern.dat";
+	static final String DATA_PATH = "data\\pattern\\Acting\\ActingPattern.dat";
 
 	static ArrayList<ActingSrc> mPatternList = initPatternList();
-
-	public static void main(String[] args) {
-		// unitTest();
-		// match("嗨 肥宅");
-		// ActingMatch am = ActingManager.match("我 覺得 桐人 星爆 星爆氣流斬 好 難 喔 www");
-		ActingMatch am = match("我 覺得 星爆氣流斬 好 難");
-		System.out.println(am);
-	}
 	
 	public static ArrayList<ActingSrc> initPatternList() {
 		ArrayList<ActingSrc> list = new ArrayList<>();
 		String[] pattern = LibraryIO.readFileLines(DATA_PATH);
+		String type = "";
 		
-		for (String p: pattern) {
-			String[] term = p.split(" ");
-			ActingSrc ps = new ActingSrc(term[0].substring(1));
-			for (int i = 1; i < term.length; i++) {
-				String tag = term[i].substring(0, 1);
-				term[i] = term[i].substring(1);
-				ps.addPair(tag, term[i]);
+		for (String line: pattern) {
+			// 前置Comment處理
+			line = LibraryUtil.removeComment(line);
+			if (line.isEmpty()) continue;
+			
+			// 設定Type
+			if (line.startsWith("-")) {
+				type = line.substring(1);
+				continue;
 			}
-			list.add(ps);
+			
+			// 讀取Pattern
+			String[] term = line.split(" ");
+			ActingSrc as = new ActingSrc(type);
+			for (String token: term)
+				as.addPair(token);
+			list.add(as);
 		}
 		
 		return list;
@@ -43,6 +44,14 @@ public class ActingManager {
 			if (m != null) return m;
 		}
 		return null;
+	}
+	
+	public static void main(String[] args) {
+		// unitTest();
+		// match("嗨 肥宅");
+		// ActingMatch am = ActingManager.match("我 覺得 桐人 星爆 星爆氣流斬 好 難 喔 www");
+		ActingMatch am = match("我 覺得 星爆氣流斬 好 難");
+		System.out.println(am);
 	}
 	
 	public static void unitTest() {

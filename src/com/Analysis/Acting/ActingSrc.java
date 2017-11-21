@@ -15,7 +15,9 @@ public class ActingSrc {
 		mPair = new ArrayList<>();
 	}
 
-	public void addPair(String tag, String word) {
+	public void addPair(String token) {
+		String tag = token.substring(0, 1);
+		String word = token.substring(1);
 		mPair.add(new Pair(tag, word));
 	}
 

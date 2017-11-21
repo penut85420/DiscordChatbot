@@ -15,32 +15,26 @@ public class BotPenut {
 	private static String WORD_YOU = "[你妳您]";
 	private static String TMP_REPLACE = "@@9999@@";
 	
-	public BotPenut() {
-		
-	}
-	
 	public String[] sendMessage(String msg) {
-		while (true) {
-			// 取得訊息的斷詞資訊
-			String wSegMsg = WordSegmentation.MaximumMatch(msg);
-			log("[Bot] Receive: " + wSegMsg + "\n");
-			
-			// 判斷是否Match到Pattern
-			ActingMatch am = ActingManager.match(wSegMsg);
-			if (am == null) break;
-			
-			// 取得Match到的主詞(@game)
-			Matchers m = am.getMatchers();
-			
-			// 決定ResponseType
-			String type = PatternMap.mathType(am.getType());
-			log("[Bot] Response Type: " + type + "\n");
-			
-			String s = ResponseManager.getResponse(type, 0, m);
-			return new String[] { s };
-		}
+		// 取得訊息的斷詞資訊
+		String wSegMsg = WordSegmentation.MaximumMatch(msg);
+		log("[Bot] Receive: " + wSegMsg + "\n");
 		
-		return defaultResponse(msg);
+		// 判斷是否Match到Pattern
+		ActingMatch am = ActingManager.match(wSegMsg);
+		
+		// 若否則回傳預設回答
+		if (am == null) return defaultResponse(msg);
+		
+		// 取得Match到的主詞(@game)
+		Matchers m = am.getMatchers();
+		
+		// 決定ResponseType
+		String type = PatternMap.mathType(am.getType());
+		log("[Bot] Response Type: " + type + "\n");
+		
+		String s = ResponseManager.getResponse(type, 0, m);
+		return new String[] { s };
 	}
 	
 	@SuppressWarnings("unused")

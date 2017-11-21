@@ -8,7 +8,7 @@ import com.Library.LibraryIO;
 
 public class WordSegmentation {
 	static final String MainDictionaryPath = "data\\dictionary\\dictionary_main.txt";
-	static final String UserDictionaryPath = "data\\dictionary\\dictionary_user.txt";
+	static final String UserDictionaryPath = "data\\dictionary\\dictionary_user_sort.txt";
 	static final String TinyDictionaryPath = "data\\dictionary\\dictionary_small.txt";
 	
 	static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);

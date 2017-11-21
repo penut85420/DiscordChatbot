@@ -15,8 +15,9 @@ public class WordSegmentation {
 	// static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, UserDictionaryPath);
 	
 	public static void main(String[] args) throws Exception {
-		unitTest1();
-		unitTest2();
+		// unitTest1();
+		// unitTest2();
+		unitTest3();
 	}
 	
 	public static void unitTest1() throws Exception {
@@ -38,6 +39,14 @@ public class WordSegmentation {
 		log(WordSegmentation.MaximumMatch("...OAO真的嗎0.0?"));
 		log(WordSegmentation.MaximumMatch("變形金剛真好看"));
 		log(WordSegmentation.MaximumMatch("我是一隻小小小鳥，高高高高飛在天上"));
+	}
+	
+	public static void unitTest3() {
+		String[] fin = LibraryIO.readFileLines("data\\pattern\\Acting\\ActingPattern.dat");
+		String fout = "";
+		for (String s: fin)
+			fout += MaximumMatch(s) + "\r\n";
+		LibraryIO.writeFile("testing\\acting_pattern_wSeg.txt", fout);
 	}
 	
 	public static String MaximumMatch(String s) {

@@ -1,0 +1,55 @@
+﻿- Game Diff i c u l t
+| 我   # 覺得   @ g am e   & 正 程度 副詞   & 困難 形容詞
+| 我   # 覺得   @ g am e   & 非 正 程度 副詞   & 簡易 形容詞
+@ g am e   & 正 程度 副詞   & 困難 形容詞
+@ g am e   & 非 正 程度 副詞   & 簡易 形容詞
+
+- Game Fun
+| 我   # 覺得   @ g am e   & 正 程度 副詞   & 趣味 形容詞
+
+- Game Q u e r y
+# 我   | 有   # 玩 過   # 那 , 哪   # 些 遊戲
+
+- Game S t u c k
+# 我   @ g am e   | 都 , 各種   # 打 不過 , 破 不了 , f u l l 不 掉 , 一直 死
+
+- Game In f o
+@ g am e   & 時間 副詞   # 出 了 , 推出   # 新   # 系統 , 角色 , 職業 , 卡片 , 寵物
+# 你 知道   @ g am e   & 時間 副詞   # 出 了 , 推出   # 新   # 系統 , 角色 , 職業 , 卡片 , 寵物
+
+- Game Play Clear
+# 我 把   @ g am e   # f u l l 掉 , p 掉 , 打過   | 了
+# 我   # f u l l 掉 , p 掉 , 打過   @ g am e   | 了
+
+- Game Dea l
+@ g am e   & 時間 副詞   # 有   | 在   & DEAL   # 嗎
+& 時間 副詞   @ g am e   # 有   | 在   & DEAL   # 嗎
+
+- Game Disco u n t
+# Da i l y   # Dea l   # -   @ g am e   & 逗號   @ discount   # %   # Of f
+
+- Game Dea l Ask
+# 你 還 記得我 問 過   # 那 , 哪   # 些   & DEAL   # 嗎
+
+- Game Play Re f u s e
+| 我   & 拒絕
+| 才   # 不 告訴   # 你 , 逆   # 勒 , 哩 , 雷
+
+- Ac c e p t
+& 接受
+
+- Game Play Ov e r
+# 講 完 , 沒   # 了
+| 大概   # 就 這樣
+
+- Ask Game News
+# 有 沒有   @ g am e   # 的   # 八卦 , 消息 , 新聞
+
+- Play e r Go o d At
+# 聽說   @ p la y e r   # 的   @ g am e   # 還 蠻 強 的
+
+- Test Pattern
+# 換行
+
+- G r e e tin g
+& G r e e tin g

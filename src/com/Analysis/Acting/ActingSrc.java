@@ -59,23 +59,25 @@ public class ActingSrc {
 				// result[i][j] = result[i][j - 1];
 			}
 		}
+		
+		if (mPatternType.equals("GameStuck")) {
+			log(mPatternType + "\n");
+			log(Arrays.toString(word) + "\n");
 
-		// log(mPatternType + "\n");
-		// log(Arrays.toString(word) + "\n");
+			for (int[] i : result) {
+				for (int j : i) {
+					log(j + " ");
+				}
+				log("\n");
+			}
 
-		// for (int[] i : result) {
-		// for (int j : i) {
-		// log(j + " ");
-		// }
-		// log("\n");
-		// }
-		//
-		// for (String[] i : dimension) {
-		// for (String j : i) {
-		// log(j + " ");
-		// }
-		// log("\n");
-		// }
+			for (String[] i : dimension) {
+				for (String j : i) {
+					log(j + " ");
+				}
+				log("\n");
+			}
+		}
 
 		int patternLength = 0;
 		for (int i = 0; i < mPair.size(); i++) {

@@ -11,11 +11,12 @@
 #我 |有 #玩過 #那,哪 #些遊戲
 
 -GameStuck
-#我 @game |都,各種 #打不過,破不了,full不掉,一直死
+#我 @game |都,各種 &GamePlayVerb &Cant
+#我 @game |都,各種 #一直死
 
 -GameInfo
-@game &時間副詞 #出了,推出 #新 #系統,角色,職業,卡片,寵物
-#你知道 @game &時間副詞 #出了,推出 #新 #系統,角色,職業,卡片,寵物
+@game &時間副詞 #出了,推出 #新 &GameElement
+#你知道 @game &時間副詞 #出了,推出 &GameElement
 
 -GamePlayClear
 #我把 @game #full掉,p掉,打過 |了
@@ -29,7 +30,7 @@
 #Daily #Deal #- @game &逗號 @discount #% #Off
 
 -GameDealAsk
-#你還記得我問過 #那,哪 #些 &DEAL #嗎
+#你 #還 #記得我 #問 #過 #那些,哪些 &DEAL #嗎
 
 -GamePlayRefuse
 |我 &拒絕
@@ -46,7 +47,7 @@
 #有沒有 @game #的 #八卦,消息,新聞
 
 -PlayerGoodAt
-#聽說 @player #的 @game #還蠻強的
+#聽說 @player #的 @game #還 #蠻 #強 #的
 
 -TestPattern
 #換行

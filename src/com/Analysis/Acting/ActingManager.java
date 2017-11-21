@@ -47,15 +47,18 @@ public class ActingManager {
 	}
 	
 	public static void main(String[] args) {
-		// unitTest();
-		// match("嗨 肥宅");
-		// ActingMatch am = ActingManager.match("我 覺得 桐人 星爆 星爆氣流斬 好 難 喔 www");
-		ActingMatch am = match("我 覺得 星爆氣流斬 好 難");
-		System.out.println(am);
+		unitTest();
+		unitTest2("我 貓咪大戰爭 都 打 不過");
+		unitTest2("我 Nation Blue 各種 full 不掉");
 	}
 	
 	public static void unitTest() {
-		for (ActingSrc ps: mPatternList)
-			log(ps + "\n\n");
+		for (ActingSrc as: mPatternList)
+			log(as + "\n\n");
+	}
+	
+	public static void unitTest2(String s) {
+		ActingMatch am = match(s);
+		log(am + "\n");
 	}
 }

@@ -26,7 +26,7 @@ public class SortUserDictionary {
 			out += s + "\r\n";
 			pre = s;
 		}
-		LibraryIO.writeFile("data\\dictionary\\dictonary_user_sort.txt", out);
+		LibraryIO.writeFile("data\\dictionary\\dictionary_user_sort.txt", out);
 		
 		System.out.println("done");
 	}

@@ -14,9 +14,13 @@ public class Dictionary {
 	}
 	
 	public void add(String[] words) {
-		if (words == null) return ;
+		if (words == null) {
+			log("Dictionary add null word list.\n");
+			return ;
+		}
 		
 		for (String token: words) {
+			// log("Add token: " + token + "\n");
 			if (token.length() < 1) continue;
 			if (token.length() == 1 && mDictionaryMap.get(token) == null) {
 				mDictionaryMap.put(token, new Node(token));
@@ -51,7 +55,8 @@ public class Dictionary {
 	}
 	
 	public static void main(String[] args) {
-		Dictionary dict = new Dictionary("data\\dictionary\\dictionary_small.txt", null);
+		Dictionary dict = new Dictionary("data\\dictionary\\dictionary_main.txt", 
+				"data\\dictionary\\dictionary_user_sort.txt");
 		
 		log(dict);
 	}

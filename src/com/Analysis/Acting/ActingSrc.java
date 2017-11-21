@@ -82,7 +82,7 @@ public class ActingSrc {
 		}
 
 		if (result[mPair.size()][word.length] == patternLength) {
-			log("MATCH!!\n");
+			log("[Acting] Pattern Match\n");
 
 			for (int e = 0; e < mPair.size(); e++) {
 				if (mPair.get(e).getTagName() == "player")

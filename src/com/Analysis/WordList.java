@@ -22,7 +22,7 @@ public class WordList {
 					wordList.put(nowWordType, new ArrayList<>());
 				continue;
 			}
-			wordList.get(nowWordType).add(line);
+			if (!line.isEmpty()) wordList.get(nowWordType).add(line);
 		}
 		
 		return wordList;

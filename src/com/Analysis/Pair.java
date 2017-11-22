@@ -24,7 +24,6 @@ public class Pair {
 	}
 
 	public String getTag() { return mTag; }
-	
 	public String getTagName() { return mTagName; }
 	
 	public boolean isTagList() { return mTag.equals(TagList); }

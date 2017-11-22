@@ -1,7 +1,7 @@
 package com.Server;
 
 import com.BotModule.BotCommand;
-import com.BotModule.BotPenut;
+import com.BotModule.BotFries;
 import com.Library.LibraryIO;
 import static com.Library.LibraryUtil.log;
 
@@ -15,11 +15,11 @@ import sx.blah.discord.util.*;
 public class MainChat {
 	static String TOKEN;
 	static IDiscordClient client;
-	static BotPenut Penut = new BotPenut();
+	static BotFries Penut = new BotFries();
 	
 	public static void main(String[] args) throws DiscordException, RateLimitException {
 		TOKEN = LibraryIO.readFile("data/token.dat");
-		log("Logging bot in...");
+		log("[Server] Logging bot in...\n");
 		client = new ClientBuilder().withToken(TOKEN).build();
 		client.getDispatcher().registerListener(new MainChat());
 		client.login();
@@ -27,7 +27,7 @@ public class MainChat {
 
 	@EventSubscriber
 	public void onReady(ReadyEvent event) {
-		log("Bot is now ready!");
+		log("[Server] Bot is now ready!\n");
 	}
 
 	@SuppressWarnings("deprecation")

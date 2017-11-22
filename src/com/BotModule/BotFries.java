@@ -1,7 +1,5 @@
 package com.BotModule;
 
-import java.util.Arrays;
-
 import com.Analysis.Matchers;
 import com.Analysis.PatternMap;
 import com.Analysis.Acting.ActingManager;
@@ -10,7 +8,7 @@ import com.Analysis.Response.ResponseManager;
 import com.Analysis.Segmentation.WordSegmentation;
 import static com.Library.LibraryUtil.log;
 
-public class BotPenut {
+public class BotFries {
 	private static String WORD_ME = "我";
 	private static String WORD_YOU = "[你妳您]";
 	private static String TMP_REPLACE = "@@9999@@";
@@ -34,6 +32,7 @@ public class BotPenut {
 		log("[Bot] Response Type: " + type + "\n");
 		
 		String s = ResponseManager.getResponse(type, 0, m);
+		log("[Bot] Response Msg: " + s + "\n");
 		return new String[] { s };
 	}
 	
@@ -62,8 +61,8 @@ public class BotPenut {
 	}
 	
 	private static void unitTest(String msg) {
-		BotPenut Penut = new BotPenut();
+		BotFries Penut = new BotFries();
 		for (int i = 0; i < 3; i++)
-		System.out.println(Arrays.toString(Penut.sendMessage(msg)));
+			Penut.sendMessage(msg);
 	}
 }

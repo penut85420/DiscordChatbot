@@ -32,6 +32,7 @@ public class ResponseSrc {
 				seg = m.get(p.getTagName());
 			s += seg;
 		}
+		
 		return s;
 	}
 	

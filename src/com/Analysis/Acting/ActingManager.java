@@ -2,6 +2,7 @@ package com.Analysis.Acting;
 
 import java.util.*;
 
+import com.Analysis.Segmentation.WordSegmentation;
 import com.Library.*;
 
 import static com.Library.LibraryUtil.log;
@@ -47,9 +48,10 @@ public class ActingManager {
 	}
 	
 	public static void main(String[] args) {
-		unitTest();
-		unitTest2("我 貓咪大戰爭 都 打 不過");
-		unitTest2("我 Nation Blue 各種 full 不掉");
+		// unitTest();
+		unitTest2("我貓咪大戰爭都打不過");
+		unitTest2("我Nation Blue各種full不掉");
+		unitTest2("我覺得很難");
 	}
 	
 	public static void unitTest() {
@@ -58,7 +60,7 @@ public class ActingManager {
 	}
 	
 	public static void unitTest2(String s) {
-		ActingMatch am = match(s);
+		ActingMatch am = match(WordSegmentation.MaximumMatch(s));
 		log(am + "\n");
 	}
 }

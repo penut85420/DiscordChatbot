@@ -1,7 +1,7 @@
 package com.TestField;
 
 import com.BotModule.BotCommand;
-import com.BotModule.BotPenut;
+import com.BotModule.BotFries;
 import com.Library.LibraryIO;
 
 import sx.blah.discord.api.ClientBuilder;
@@ -14,7 +14,7 @@ import sx.blah.discord.util.*;
 public class MaybeChat {
 	static String TOKEN;
 	static IDiscordClient client;
-	static BotPenut Penut = new BotPenut();
+	static BotFries Penut = new BotFries();
 	
 	public static void main(String[] args) throws DiscordException, RateLimitException {
 		TOKEN = LibraryIO.readFile("data/token.dat");

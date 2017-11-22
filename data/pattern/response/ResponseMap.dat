@@ -22,5 +22,5 @@ GamePlayClear CongratulateAndAskForTeach
 // PlayerGoodAt PlayerWho
 TestPattern TestResponse
 
-// Response With Process
+// Response Map To Process
 AskGameNews $IsGameHasNews

@@ -1,6 +1,7 @@
 package com.Analysis.Response;
 
 import com.Analysis.Matchers;
+import com.InternetResource.GameNewsGNN;
 
 public class ResponseProcess {
 	
@@ -17,14 +18,22 @@ public class ResponseProcess {
 	}
 	
 	public static String IsGameHasNews(Matchers m) {
-		m.add("news_title", "[問卦] 有沒有貓咪大戰爭的八卦?");
-		m.add("news_link", "http://www.abc.com");
-		return ResponseManager.getResponse("GameNoNews", 0, m);
+		String news = GameNewsGNN.getNewsInfo(m.get("game"));
+		
+		if (news == null) return ResponseManager.getResponse("GameNoNews", 0, m); 
+		
+		String[] info = news.split(";");
+		
+		m.add("news_title", info[0]);
+		m.add("news_link", info[1]);
+		
+		return ResponseManager.getResponse("GameHasNews", 0, m);
 	}
 	
 	public static void main(String[] args) throws Exception {
-		// IsGameHasNews
 		Class<?>[] param = {Matchers.class};
-		System.out.println(ResponseProcess.class.getMethod("IsGameHasNews", param).invoke(null, new Matchers()));
+		Matchers m = new Matchers();
+		m.add("game", "真三國無雙 8");
+		System.out.println(ResponseProcess.class.getMethod("IsGameHasNews", param).invoke(null, m));
 	}
 }

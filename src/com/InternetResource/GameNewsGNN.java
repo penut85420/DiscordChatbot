@@ -1,17 +1,20 @@
-package com.Connection;
+package com.InternetResource;
 
 import java.net.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import com.Library.LibraryIO;
+import com.Library.LibraryUtil;
+
 import java.io.*;
 
-public class FindGNNNews {
+public class GameNewsGNN {
 	public static ArrayList<NewsTitle> mNewsTitleList = init();
 	
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(mNewsTitleList.toArray()).replaceAll(", ", "\n"));
-		System.out.println(matchTitle("音速小子 武力"));
+		LibraryUtil.logArr(mNewsTitleList.toArray());
+		System.out.println(getNewsInfo("音速小子 武力"));
 	}
 
 	public static ArrayList<NewsTitle> init() {
@@ -20,11 +23,13 @@ public class FindGNNNews {
 		try {
 			// Create Connection
 			URLConnection gnnCon = new URL("https://gnn.gamer.com.tw/rss.xml").openConnection();
+			
 			// Set Connection Header
 			gnnCon.setRequestProperty("User-Agent",
 					"Mozilla/5.0 (Windows NT 6.1; WOW64) "
 					+ "AppleWebKit/537.11 (KHTML, like Gecko) "
 					+ "Chrome/23.0.1271.95 Safari/537.11");
+			
 			// Start Connecting
 			gnnCon.connect();
 
@@ -37,14 +42,17 @@ public class FindGNNNews {
 				content += inputLine + "\n";
 			in.close();
 			
-			// Retrive Title
+			// Backup
+			LibraryIO.writeFile("testing\\GNN.xml", content);
+			
+			// Retrive Title And Link
+			System.out.println("[GNN] Init Success");
 			return getTitle(content);
 		} catch (Exception e) {
-			System.err.println("Err in FindGNNNews init()");
+			System.err.println("[GNN] Err in FindGNNNews init()");
 			e.printStackTrace();
 		}
 		
-		System.out.println("Done");
 		return null;
 	}
 
@@ -53,37 +61,55 @@ public class FindGNNNews {
 		String preTitleTag = "<title><![CDATA[", 
 				endTitleTag = "]]></title>",
 				preThemeTag = "《",
-				endThemeTag = "》";
+				endThemeTag = "》",
+				preLinkTag = "<link><![CDATA[",
+				endLinkTag = "]]></link>";
 
 		while (content.indexOf(preTitleTag) > 0) {
-			String title = content.substring(content.indexOf(preTitleTag) + preTitleTag.length(), content.indexOf(endTitleTag));
-			String theme = null;
-			if (title.indexOf(preThemeTag) < title.indexOf(endThemeTag)) 
-				theme = title.substring(title.indexOf(preThemeTag) + preThemeTag.length(), title.indexOf(endThemeTag));
-			titleList.add(new NewsTitle(title, theme));
-			content = content.substring(content.indexOf(endTitleTag) + endTitleTag.length());
+			String title = retriveByTag(content, preTitleTag, endTitleTag);
+			String theme = retriveByTag(content, preThemeTag, endThemeTag);
+			String link = retriveByTag(content, preLinkTag, endLinkTag);
+			
+			titleList.add(new NewsTitle(title, theme, link));
+			
+			content = content.substring(content.indexOf(endLinkTag) + endLinkTag.length());
 		}
 		
 		return titleList;
 	}
 	
-	public static String matchTitle(String game) {
+	private static String retriveByTag(String str, String preTag, String endTag) {
+		int preIdx = str.indexOf(preTag),
+			endIdx = str.indexOf(endTag);
+		
+		if (preIdx < 0) return null;
+		preIdx += preTag.length();
+		if (preIdx > endIdx) return null;
+		
+		return str.substring(str.indexOf(preTag) + preTag.length(), str.indexOf(endTag));
+	}
+	
+	public static String getNewsInfo(String game) {
+		if (game != null)
 		for (NewsTitle nt: mNewsTitleList)
-			if (nt.isThemeMatch(game)) return nt.getTitle();
+			if (nt.isThemeMatch(game)) return nt.getTitle() + ";" + nt.getLink();
 		
 		return null;
 	}
 	
-	public static class NewsTitle {
+	static class NewsTitle {
 		String mCompleteTitle;
 		String mMainTheme;
+		String mLink;
 		
-		public NewsTitle(String title, String theme) {
+		public NewsTitle(String title, String theme, String link) {
 			mCompleteTitle = title;
 			mMainTheme = theme;
+			mLink = link;
 		}
 		
 		public String getTitle() { return mCompleteTitle; }
+		public String getLink() { return mLink; }
 		
 		public boolean isThemeExist() { return mMainTheme != null; }
 		
@@ -95,7 +121,7 @@ public class FindGNNNews {
 		}
 		
 		public String toString() {
-			return mCompleteTitle + "\t" + mMainTheme;
+			return mCompleteTitle + "\n<" + mMainTheme + "> " + mLink + "\n";
 		}
 	}
 }

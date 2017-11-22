@@ -5,6 +5,7 @@ import com.Analysis.PatternMap;
 import com.Analysis.Acting.ActingManager;
 import com.Analysis.Acting.ActingMatch;
 import com.Analysis.Response.ResponseManager;
+import com.Analysis.Response.ResponseProcess;
 import com.Analysis.Segmentation.WordSegmentation;
 import static com.Library.LibraryUtil.log;
 
@@ -27,13 +28,22 @@ public class BotFries {
 		// 取得Match到的主詞(@game)
 		Matchers m = am.getMatchers();
 		
-		// 決定ResponseType
-		String type = PatternMap.mathType(am.getType());
-		log("[Bot] Response Type: " + type + "\n");
+		// 判斷是否為Method Response
+		String actingType = am.getType();
+		boolean isProcess = PatternMap.isProcess(actingType);
+		log("[Bot] Method Response: " + isProcess + "\n");
 		
-		String s = ResponseManager.getResponse(type, 0, m);
-		log("[Bot] Response Msg: " + s + "\n");
-		return new String[] { s };
+		// 取得ResponseType
+		String responseType = PatternMap.matchType(actingType);
+		log("[Bot] Response Type: " + responseType + "\n");
+		
+		// 製作完整的Response
+		String response;
+		if (isProcess) response = ResponseProcess.getResponse(responseType, m);
+		else response = ResponseManager.getResponse(responseType, 0, m);
+		log("[Bot] Response Msg: " + response + "\n");
+		
+		return new String[] { response };
 	}
 	
 	@SuppressWarnings("unused")
@@ -56,11 +66,12 @@ public class BotFries {
 	}
 	
 	public static void main(String[] args) {
-		unitTest("我覺得貓咪大戰爭好難");
-		unitTest("我覺得貓咪大戰爭不是很簡單");
+//		unitTest("我覺得貓咪大戰爭好難");
+//		unitTest("我覺得貓咪大戰爭不是很簡單");
+		unitTest("有沒有貓咪大戰爭的八卦?");
 	}
 	
-	private static void unitTest(String msg) {
+	public static void unitTest(String msg) {
 		BotFries Penut = new BotFries();
 		for (int i = 0; i < 3; i++)
 			Penut.sendMessage(msg);

@@ -1,9 +1,11 @@
 package com.Analysis.Response;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.Analysis.Matchers;
+import com.Analysis.PatternMap;
 import com.Library.*;
 import static com.Library.LibraryUtil.log;
 
@@ -91,9 +93,6 @@ public class ResponseManager {
 		m.add("info", "VR版");
 		
 		getResponse("GameDifficultReply", 0, m);
-//		nr.getResponse("GameDifficultReply", 3, m);
-//		nr.getResponse("GameDifficultReply", 5, m);
-//		nr.getResponse("GameDifficultReply", 7, m);
 		System.out.println("Done");
 	}
 }

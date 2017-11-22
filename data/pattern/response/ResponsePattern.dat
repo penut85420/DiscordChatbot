@@ -1,10 +1,11 @@
 -GreetingReply
 0-9 &Greeting
+5-9 &Greeting &HappyEnd
 
 -GameDifficultReply
 0-3 #你覺得 @game &正程度副詞 &困難形容詞 #嗎?
 2-5 @game #有這麼難 &驚訝顏文字
-3-7 #你覺得 @game &正程度副詞 &困難形容詞 #嗎 &End
+3-7 #你覺得 @game &正程度副詞 &困難形容詞 #嗎 &HappyEnd
 
 -GamePlayInfo
 0-9 @player #說他打過了 @game
@@ -34,3 +35,9 @@
 
 -TestResponse
 0-9 #這是個 \n #換行測試
+
+-GameHasNews
+0-9 @game #有個新聞 \n @news_title \n @news_link
+
+-GameNoNews
+0-9 @game #最近沒有新聞

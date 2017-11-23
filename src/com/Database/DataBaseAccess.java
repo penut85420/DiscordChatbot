@@ -34,7 +34,18 @@ public class DataBaseAccess {
 	}
 	
 	public ResultSet select(String targetCol, String targetTable, String condition, String order) throws SQLException{
-		st.execute("SELECT " + targetCol + "FROM" + targetTable + " WHERE " + condition + " ORDER BY " +order);
+		st.execute("SELECT " + targetCol + "FROM" + targetTable + " WHERE " + condition + " ORDER BY " + order);
 		return st.getResultSet();
+	}
+	
+	public ResultSet select(String targetCol, String targetTable, String order) throws SQLException{
+		st.execute("SELECT " + targetCol + "FROM" + targetTable + " ORDER BY " + order);
+		return st.getResultSet();
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		
+		System.out.println(new DataBaseAccess().select("*", "member", "pwd"));
 	}
 }

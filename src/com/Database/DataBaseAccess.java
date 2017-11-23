@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SuppressWarnings("unused")
 public class DataBaseAccess {
-	private final String localHostDataSource = "jdbc:mysql://127.0.0.1:3306/test?user=javauser&password=0000&useSSL=false";
-	private final String severDataSource = "jdbc:mysql://140.121.199.228:3306/test?user=javauser&password=0000&useSSL=false";
+	private final String localHostDataSource = "jdbc:mysql://127.0.0.1:3306/bot?user=newuser&password=971233&useSSL=false";
+	private final String severDataSource = "jdbc:mysql://140.121.199.228:3306/bot?user=newuser&password=971233&useSSL=false";
 	private Connection conn = null;
 	private Statement st;
 	private ResultSet rs;
@@ -39,7 +41,7 @@ public class DataBaseAccess {
 	}
 
 	public ResultSet select(String targetCol, String targetTable, String order) throws SQLException {
-		String query = "SELECT " + targetCol + "FROM" + targetTable;
+		String query = "SELECT " + targetCol + " FROM " + targetTable;
 
 		st.execute(query + (order.isEmpty() ? "" : (" ORDER BY " + order)));
 		return st.getResultSet();
@@ -47,6 +49,10 @@ public class DataBaseAccess {
 
 	public static void main(String[] args) throws Exception {
 		DataBaseAccess db = new DataBaseAccess();
-		System.out.println(db.select("*", "user", "id"));
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = sdf.format(dt);
+		//db.insert("users(user_id)", "(\'0000\')");
+		System.out.println(db.select("*", "users",""));
 	}
 }

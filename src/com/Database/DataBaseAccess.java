@@ -29,25 +29,24 @@ public class DataBaseAccess {
 		st = conn.createStatement();
 	}
 
-	public void insert(String table, String value) throws SQLException{
+	public void insert(String table, String value) throws SQLException {
 		st.execute("INSERT INTO " + table + " value " + value);
 	}
-	
-	public ResultSet select(String targetCol, String targetTable, String condition, String order) throws SQLException{
+
+	public ResultSet select(String targetCol, String targetTable, String condition, String order) throws SQLException {
 		st.execute("SELECT " + targetCol + "FROM" + targetTable + " WHERE " + condition + " ORDER BY " + order);
 		return st.getResultSet();
 	}
-	
-	public ResultSet select(String targetCol, String targetTable, String order) throws SQLException{
+
+	public ResultSet select(String targetCol, String targetTable, String order) throws SQLException {
 		String query = "SELECT " + targetCol + "FROM" + targetTable;
-		
+
 		st.execute(query + (order.isEmpty() ? "" : (" ORDER BY " + order)));
 		return st.getResultSet();
 	}
-	
-	
+
 	public static void main(String[] args) throws Exception {
-		
-		System.out.println(new DataBaseAccess().select("*", "member", "pwd"));
+		DataBaseAccess db = new DataBaseAccess();
+		System.out.println(db.select("*", "user", "id"));
 	}
 }

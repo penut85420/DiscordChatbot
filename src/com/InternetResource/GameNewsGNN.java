@@ -14,7 +14,7 @@ public class GameNewsGNN {
 	
 	public static void main(String[] args) {
 		LibraryUtil.logArr(mNewsTitleList.toArray());
-		System.out.println(getNewsInfo("音速小子 武力"));
+		System.out.println(getNewsInfo("J Team"));
 	}
 
 	public static ArrayList<NewsTitle> init() {
@@ -116,7 +116,8 @@ public class GameNewsGNN {
 		public boolean isThemeMatch(String theme) {
 			// TODO 部分Match
 			// TODO Theme不存在
-			if (isThemeExist() && theme.equals(mMainTheme)) return true;
+			if (isThemeExist() && mMainTheme.indexOf(theme) >= 0) return true;
+			if (mCompleteTitle.indexOf(theme) >= 0) return true;
 			return false;
 		}
 		

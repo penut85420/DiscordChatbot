@@ -15,7 +15,6 @@ import com.Database.DataBaseAccess;
 
 import java.text.SimpleDateFormat;
 
-@SuppressWarnings("unused")
 public class SteamDeal {
 	private final String steamSaleUrl = "http://store.steampowered.com/feeds/daily_deals.xml";
 	private final String filename = "daily_deals.xml";

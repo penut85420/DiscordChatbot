@@ -35,6 +35,7 @@ public class MainChat {
 	public void onMessageReceived(MessageReceivedEvent event)  {
 		IMessage message = event.getMessage();
 		IUser user = message.getAuthor();
+		log("[Server] Author: " + user.getName() + ";" + user.getAvatar() + ";" + user.getDisplayName(event.getGuild()) + "\n");
 		String msg = message.getContent();
 		if (user.isBot()) return;
 		

@@ -39,7 +39,9 @@ public class DataBaseAccess {
 	}
 	
 	public ResultSet select(String targetCol, String targetTable, String order) throws SQLException{
-		st.execute("SELECT " + targetCol + "FROM" + targetTable + " ORDER BY " + order);
+		String query = "SELECT " + targetCol + "FROM" + targetTable;
+		
+		st.execute(query + (order.isEmpty() ? "" : (" ORDER BY " + order)));
 		return st.getResultSet();
 	}
 	

@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.sql.SQLException;
 import java.util.Date;
 
 import com.Database.DataBaseAccess;
@@ -66,7 +67,14 @@ public class SteamDeal {
 			} catch (Exception e) {
 			}
 			System.out.println(title + "\n" + id);
-
+			
+			
+			try {
+				dbc.insert("game_deal (game_id,deal_title)", "(\'" + id + "\',\'" + title +"\')");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// dbc.insert("", "(");
 			// dataList.add(new data(title, id));
 

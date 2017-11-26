@@ -52,7 +52,7 @@ public class DataBaseAccess {
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = sdf.format(dt);
-		//db.insert("users(user_id)", "(\'0000\')");
+		db.insert("users(user_id)", "(\'Leon\')");
 		ResultSet rs = db.select("*", "users","");
 		while (rs.next())
 			System.out.println(rs.getString("user_id"));

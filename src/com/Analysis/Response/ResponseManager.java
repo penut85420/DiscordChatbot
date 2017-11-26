@@ -40,7 +40,7 @@ public class ResponseManager {
 			String[] seg = line.split(" ");
 			
 			// 獲得情緒指數的高低值
-			int[] bound = getBound(seg[0]);
+			int[] bound = LibraryUtil.getBound(seg[0]);
 			ResponseSrc rs = new ResponseSrc(bound[0], bound[1], type);
 			
 			// 將Pattern的每個Seg加入Pattern結構中
@@ -52,20 +52,6 @@ public class ResponseManager {
 		}
 		
 		return map;
-	}
-	
-	// 將情緒指數高低的字串格式轉成兩個整數，Ex: "0-9" > {0, 9}
-	private static int[] getBound(String s) {
-		String[] ss = s.split("-");
-		int[] bound = new int[] {Integer.parseInt(ss[0]), Integer.parseInt(ss[1])};
-		
-		if (bound[0] > bound[1]) {
-			int tmp = bound[0];
-			bound[0] = bound[1];
-			bound[1] = tmp;
-		}
-		
-		return bound;
 	}
 	
 	// 將此結構的集合輸出成字串

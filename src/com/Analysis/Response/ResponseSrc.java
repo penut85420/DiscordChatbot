@@ -36,6 +36,20 @@ public class ResponseSrc {
 		return s;
 	}
 	
+	public String makeReponse(int emotion, Matchers m) {
+		String s = "";
+		
+		for (Pair p: mPair) {
+			String seg = p.getRndPair();
+			
+			if (seg == null && p.isTagSlot())
+				seg = m.get(p.getTagName());
+			s += seg;
+		}
+		
+		return s;
+	}
+	
 	public String toString() {
 		String s = String.format("[%d-%d] %s {\n", mFriendlyLowBound, mFriendlyHighBound, mResponseType);
 		for (Pair p : mPair)

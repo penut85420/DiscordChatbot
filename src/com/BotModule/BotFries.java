@@ -1,11 +1,8 @@
 package com.BotModule;
 
-import com.Analysis.Matchers;
-import com.Analysis.PatternMap;
-import com.Analysis.Acting.ActingManager;
-import com.Analysis.Acting.ActingMatch;
-import com.Analysis.Response.ResponseManager;
-import com.Analysis.Response.ResponseProcess;
+import com.Analysis.*;
+import com.Analysis.Acting.*;
+import com.Analysis.Response.*;
 import com.Analysis.Segmentation.WordSegmentation;
 import static com.Library.LibraryUtil.log;
 
@@ -68,7 +65,7 @@ public class BotFries {
 	public static void main(String[] args) {
 //		unitTest("我覺得貓咪大戰爭好難");
 //		unitTest("我覺得貓咪大戰爭不是很簡單");
-		unitTest("有沒有貓咪大戰爭的八卦?");
+		unitTest("薯條喵喵叫");
 	}
 	
 	public static void unitTest(String msg) {

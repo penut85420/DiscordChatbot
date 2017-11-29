@@ -11,16 +11,16 @@ import java.nio.channels.ReadableByteChannel;
 import java.sql.SQLException;
 import java.util.Date;
 
-import com.Database.DataBaseAccess;
+import com.Database.DataBaseManager;
 
 import java.text.SimpleDateFormat;
 
 public class SteamDeal {
 	private final String steamSaleUrl = "http://store.steampowered.com/feeds/daily_deals.xml";
 	private final String filename = "daily_deals.xml";
-	private DataBaseAccess dbc;
+	private DataBaseManager dbc;
 
-	public SteamDeal(DataBaseAccess dbc) {
+	public SteamDeal(DataBaseManager dbc) {
 		this.dbc = dbc;
 		getSalePage();
 		parse();

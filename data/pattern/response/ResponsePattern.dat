@@ -41,3 +41,9 @@
 
 -GameNoNews
 0-9 @game #最近沒有新聞
+
+-TestingResponse
+0-3 #非常不友善
+3-5 #不友善
+5-7 #友善
+7-9 #超級友善

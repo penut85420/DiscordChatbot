@@ -52,5 +52,8 @@
 -TestPattern
 #換行
 
+-TestingPattern
+#薯條 #喵喵 #叫
+
 -Greeting
 &Greeting

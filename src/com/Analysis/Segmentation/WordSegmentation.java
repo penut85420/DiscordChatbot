@@ -4,6 +4,7 @@ import static com.Library.LibraryUtil.log;
 
 import java.io.*;
 
+import com.Database.DataBaseManager;
 import com.Library.LibraryIO;
 
 public class WordSegmentation {
@@ -11,13 +12,36 @@ public class WordSegmentation {
 	static final String UserDictionaryPath = "data\\dictionary\\dictionary_user_sort.txt";
 	static final String TinyDictionaryPath = "data\\dictionary\\dictionary_small.txt";
 	
-	static Dictionary mDictionary = new Dictionary(MainDictionaryPath, UserDictionaryPath);
+	static Dictionary mDictionary = init();
 	// static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, UserDictionaryPath);
+	
+	private static Dictionary init() {
+		Dictionary dict = new Dictionary(MainDictionaryPath, UserDictionaryPath);
+		for (String s: DataBaseManager.getUserList())
+			dict.add(s);
+		return dict;
+	}
+	
+	public static String MaximumMatch(String s) {
+		String result = "";
+		
+		for (int i = 0; i < s.length(); ) {
+			String match = mDictionary.match(s.substring(i));
+			// System.out.println("Match: " + match);
+			i += match.length();
+			result += match + " ";
+		}
+		
+		return result.trim();
+	}
+	
+	public static void addNewWord(String s) { mDictionary.add(s); }
 	
 	public static void main(String[] args) throws Exception {
 		// unitTest1();
-		unitTest2();
+		// unitTest2();
 		// unitTest3();
+		log(MaximumMatch("Penut"));
 	}
 	
 	public static void unitTest1() throws Exception {
@@ -48,18 +72,5 @@ public class WordSegmentation {
 		for (String s: fin)
 			fout += MaximumMatch(s) + "\r\n";
 		LibraryIO.writeFile("testing\\acting_pattern_wSeg.txt", fout);
-	}
-	
-	public static String MaximumMatch(String s) {
-		String result = "";
-		
-		for (int i = 0; i < s.length(); ) {
-			String match = mDictionary.match(s.substring(i));
-			// System.out.println("Match: " + match);
-			i += match.length();
-			result += match + " ";
-		}
-		
-		return result.trim();
 	}
 }

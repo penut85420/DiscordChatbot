@@ -13,7 +13,7 @@ public class Dictionary {
 		add(LibraryIO.readFileLines(userDict));
 	}
 	
-	public void add(String[] words) {
+	public void add(String... words) {
 		if (words == null) {
 			log("Dictionary add null word list.\n");
 			return ;

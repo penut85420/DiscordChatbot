@@ -68,12 +68,8 @@ public class SteamDeal {
 			System.out.println(title + "\n" + id);
 			
 			
-			try {
-				dbc.insert("game_deal (game_id,deal_title)", "(\'" + id + "\',\'" + title +"\')");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			dbc.insert("game_deal (game_id,deal_title)", "(\'" + id + "\',\'" + title +"\')");
+
 			// dbc.insert("", "(");
 			// dataList.add(new data(title, id));
 

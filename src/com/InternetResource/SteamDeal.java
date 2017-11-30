@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import com.Database.DataBaseManager;
+import com.mysql.jdbc.DatabaseMetaDataUsingInfoSchema;
 
 import java.text.SimpleDateFormat;
 
@@ -77,4 +78,9 @@ public class SteamDeal {
 		}
 	}
 
+	public void main(String arg0[]){
+		DataBaseManager db = new DataBaseManager();
+		SteamDeal s = new SteamDeal(db);
+		
+	}
 }

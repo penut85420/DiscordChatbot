@@ -23,8 +23,6 @@ public class SteamDeal {
 
 	public SteamDeal(DataBaseManager dbc) {
 		this.dbc = dbc;
-		getSalePage();
-		parse();
 	}
 
 	public void getSalePage() {
@@ -53,7 +51,7 @@ public class SteamDeal {
 
 		s = s.substring(s.indexOf("</channel>") + "</channel>".length(), s.indexOf("</rdf:RDF>"));
 		int i;
-		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		String date = "2017-11-15"/*new SimpleDateFormat("yyyy-MM-dd").format(new Date())*/;
 
 		while ((i = s.indexOf("<dc:date>" + date)) != -1) {
 			String contents = s.substring(0, i);
@@ -71,16 +69,18 @@ public class SteamDeal {
 			
 			dbc.insert("game_deal (game_id,deal_title)", "(\'" + id + "\',\'" + title +"\')");
 
-			// dbc.insert("", "(");
+			//dbc.insert("", "(");
 			// dataList.add(new data(title, id));
 
 			s = s.substring(s.indexOf("</item>") + "</item>".length());
 		}
 	}
 
-	public void main(String arg0[]){
+	public static void main(String arg0[]){
 		DataBaseManager db = new DataBaseManager();
 		SteamDeal s = new SteamDeal(db);
+		//s.getSalePage();
+		//s.parse();
 		
 	}
 }

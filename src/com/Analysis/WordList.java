@@ -5,10 +5,11 @@ import java.util.*;
 import com.Library.*;
 
 public class WordList {
-	static final String WordListPath = "data\\pattern\\WordList.txt";
+	static final String WordListPath = "data\\Pattern\\WordList.txt";
 	
 	static HashMap<String, ArrayList<Word>> mWordList = init();
 	
+	// Initialize Data
 	private static HashMap<String, ArrayList<Word>> init() {
 		HashMap<String, ArrayList<Word>> wordList = new HashMap<>();
 		
@@ -30,6 +31,7 @@ public class WordList {
 		return wordList;
 	}
 	
+	// Get a random word from the list
 	public static String getRandomWord(String type) {
 		ArrayList<Word> list = mWordList.get(type);
 		
@@ -38,6 +40,7 @@ public class WordList {
 		return list.get(LibraryMath.getRandNum(list.size())).getWord();
 	}
 	
+	// Get a random word from the list with emotion
 	public static String getRandomWord(String type, int emotion) {
 		ArrayList<Word> list = mWordList.get(type),
 				tmpList = new ArrayList<>();
@@ -53,16 +56,25 @@ public class WordList {
 		return tmpList.get(LibraryMath.getRandNum(tmpList.size())).getWord();
 	}
 	
-	public static void main(String[] args) {
-		for (int i = 0; i < 10; i++)
-		LibraryUtil.log(getRandomWord("HappyEnd", 5) + "\n");
-	}
-
+	// Get a word list of a type
 	public static ArrayList<String> getWordList(String type) {
 		ArrayList<String> list = new ArrayList<>();
 		for (Word w: mWordList.get(type))
 			list.add(w.getWord());
 		return list;
+	}
+	
+	// Get type by word
+	public static String getTypeByWord(String word) {
+		for (String type: mWordList.keySet())
+			for (Word w: mWordList.get(type))
+				if (w.getWord().equals(word)) return type;
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		for (int i = 0; i < 10; i++)
+		LibraryUtil.log(getRandomWord("HappyEnd", 5) + "\n");
 	}
 	
 	static class Word {

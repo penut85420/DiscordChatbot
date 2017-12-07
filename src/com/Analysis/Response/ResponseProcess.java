@@ -1,6 +1,7 @@
 package com.Analysis.Response;
 
 import com.Analysis.Matchers;
+import com.Analysis.WordList;
 import com.InternetResource.GameNewsGNN;
 
 public class ResponseProcess {
@@ -30,10 +31,32 @@ public class ResponseProcess {
 		return ResponseManager.getResponse("GameHasNews", 0, m);
 	}
 	
+	public static String KnowWhoReply(Matchers m) {
+		String player = m.get("player");
+		
+		if (player == null) return "你在說啥?";
+		
+		String type = WordList.getTypeByWord(player);
+
+		if (type.equals("Penut")) return "認識啊，他很帥ω";
+		
+		return "我不認識" + player + "欸";
+	}
+	
 	public static void main(String[] args) throws Exception {
+		unitTest2();
+	}
+	
+	public static void unitTest1() throws Exception {
 		Class<?>[] param = {Matchers.class};
 		Matchers m = new Matchers();
 		m.add("game", "真三國無雙 8");
 		System.out.println(ResponseProcess.class.getMethod("IsGameHasNews", param).invoke(null, m));
+	}
+	
+	public static void unitTest2() {
+		Matchers m = new Matchers();
+		m.add("player", "Penut");
+		System.out.println(ResponseProcess.getResponse("KnowWhoReply", m));
 	}
 }

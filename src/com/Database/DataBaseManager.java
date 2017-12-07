@@ -17,10 +17,10 @@ public class DataBaseManager {
 	static DataBaseManager DBM = new DataBaseManager();
 	static SimpleDateFormat TimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	Connection mConnection;
-	Statement mStatement;
+	static Connection mConnection;
+	static Statement mStatement;
 
-	public static enum TargetTable { USER, GAME, FAVORITE, MESSAGE };
+	public static enum TargetTable { USER, GAMES, FAVORITE, MESSAGE };
 
 	public DataBaseManager() {
 		// 如果Local端的DB沒有開啟，就Access遠端的DB
@@ -150,9 +150,10 @@ public class DataBaseManager {
 	// 將字串以單引號包起來
 	public static String clipSQT(String s) { return "\'" + s + "\'"; } 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// unitTest();
-		unitTest2();
+		// unitTest2();
+		unitTest3();
 	}
 	
 	public static void unitTest() throws SQLException {
@@ -177,6 +178,28 @@ public class DataBaseManager {
 		System.out.println("[DB] Delete " + user);
 		deleteUser(user);
 		logUserList();
+	}
+	
+	public static void unitTest3() throws Exception {
+		DatabaseMetaData md = mConnection.getMetaData();
+        ResultSet rs = md.getTables(null, null, "%", null);
+        while (rs.next())
+            System.out.printf("Table Name: %s%n", rs.getString("TABLE_NAME").toUpperCase());
+		
+		mStatement.execute("SELECT * FROM USERS");
+		System.out.println(mStatement.getResultSet().getMetaData());
+		
+		mStatement.execute("SELECT * FROM GAMES");
+		System.out.println(mStatement.getResultSet().getMetaData());
+		
+		mStatement.execute("SELECT * FROM USER_FAVORITE_GAME");
+		System.out.println(mStatement.getResultSet().getMetaData());
+		
+		mStatement.execute("SELECT * FROM MESSAGE_LOG");
+		System.out.println(mStatement.getResultSet().getMetaData());
+		
+		mStatement.execute("SELECT * FROM GAME_DEAL");
+		System.out.println(mStatement.getResultSet().getMetaData());
 	}
 	
 	public static void logUserList() {

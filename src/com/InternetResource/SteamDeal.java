@@ -8,13 +8,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.sql.SQLException;
-import java.util.Date;
-
 import com.Database.DataBaseManager;
-import com.mysql.jdbc.DatabaseMetaDataUsingInfoSchema;
-
-import java.text.SimpleDateFormat;
 
 public class SteamDeal {
 	private final String steamSaleUrl = "http://store.steampowered.com/feeds/daily_deals.xml";
@@ -77,10 +71,10 @@ public class SteamDeal {
 	}
 
 	public static void main(String arg0[]){
-		DataBaseManager db = new DataBaseManager();
-		SteamDeal s = new SteamDeal(db);
-		//s.getSalePage();
-		//s.parse();
+		// DataBaseManager db = new DataBaseManager();
+		// SteamDeal s = new SteamDeal(db);
+		// s.getSalePage();
+		// s.parse();
 		
 	}
 }

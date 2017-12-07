@@ -14,15 +14,18 @@ import sx.blah.discord.util.*;
 
 public class MainChat {
 	static String TOKEN;
-	static IDiscordClient client;
+	static IDiscordClient mClient;
 	static BotFries Penut = new BotFries();
+	static String ID;
 	
 	public static void main(String[] args) throws DiscordException, RateLimitException {
-		TOKEN = LibraryIO.readFile("data/token.dat");
+		TOKEN = LibraryIO.readFile("Data\\Token.dat");
 		log("[Server] Logging bot in...\n");
-		client = new ClientBuilder().withToken(TOKEN).build();
-		client.getDispatcher().registerListener(new MainChat());
-		client.login();
+		mClient = new ClientBuilder().withToken(TOKEN).build();
+		mClient.getDispatcher().registerListener(new MainChat());
+		mClient.login();
+		ID = "<@!" + mClient.getApplicationClientID() + ">";
+		log("[Server] Bot ID: " + ID + "\n");
 	}
 
 	@EventSubscriber
@@ -35,16 +38,18 @@ public class MainChat {
 	public void onMessageReceived(MessageReceivedEvent event)  {
 		IMessage message = event.getMessage();
 		IUser user = message.getAuthor();
-		log("[Server] Author: " + user.getName() + ";" + user.getAvatar() + ";" + user.getDisplayName(event.getGuild()) + "\n");
+		log("[Server] UserName: " + user.getName() + "; UserAvatar: " + user.getAvatar() + "; UserDisplayName: " + user.getDisplayName(event.getGuild()) + "\n");
 		String msg = message.getContent();
-		if (user.isBot()) return;
+		
+		if (user.isBot()) return ;
+		if (!msg.startsWith(ID)) return ;
 		
 		IChannel channel = message.getChannel();
 		
-		if (cmdCheck(msg, channel)) return;
+		if (cmdCheck(msg, channel)) return ;
 		
 		for (String s: Penut.sendMessage(msg))
-			channel.sendMessage(s);
+			channel.sendMessage("<@!" + user.getStringID() + "> " + s);
 	}
 	
 	private boolean cmdCheck(String msg, IChannel ch) {

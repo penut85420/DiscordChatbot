@@ -13,8 +13,9 @@ public class BotFries {
 	
 	public String[] sendMessage(String msg) {
 		// 取得訊息的斷詞資訊
+		log("[Bot] Receive Raw: " + msg + "\n");
 		String wSegMsg = WordSegmentation.MaximumMatch(msg);
-		log("[Bot] Receive: " + wSegMsg + "\n");
+		log("[Bot] Receive Seg: " + wSegMsg + "\n");
 		
 		// 判斷是否Match到Pattern
 		ActingMatch am = ActingManager.match(wSegMsg);

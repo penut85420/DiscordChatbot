@@ -8,18 +8,36 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import com.Database.DataBaseManager;
 
 public class SteamDeal {
-	private final String steamSaleUrl = "http://store.steampowered.com/feeds/daily_deals.xml";
-	private final String filename = "daily_deals.xml";
-	private DataBaseManager dbc;
-
-	public SteamDeal(DataBaseManager dbc) {
-		this.dbc = dbc;
+	private final String steamSaleUrl = "store.steampowered.com/api/appdetails?appids=";
+	private String JSONToken[] = {"", "data", "price_overview", "discount_percent"}; 
+	
+	public SteamDeal() {
 	}
+	
+	public String isGameInDeal(String title){
+		String s = ""; 
+		try{
+			ArrayList<String> idList = DataBaseManager.matchGameTitle(title);
+		}catch(SQLException e){
+			s = title + "目前沒有特價喔";
+			e.printStackTrace();
+		}
+		
+		//JSONToken[0] = ;
+		return s;
+	} 
+	
 
-	public void getSalePage() {
+		
+
+	
+	/*public void getSalePage() {
 		try {
 			URL website = new URL(steamSaleUrl);
 			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
@@ -45,7 +63,7 @@ public class SteamDeal {
 
 		s = s.substring(s.indexOf("</channel>") + "</channel>".length(), s.indexOf("</rdf:RDF>"));
 		int i;
-		String date = "2017-11-15"/*new SimpleDateFormat("yyyy-MM-dd").format(new Date())*/;
+		String date = "2017-11-15"new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 		while ((i = s.indexOf("<dc:date>" + date)) != -1) {
 			String contents = s.substring(0, i);
@@ -68,7 +86,7 @@ public class SteamDeal {
 
 			s = s.substring(s.indexOf("</item>") + "</item>".length());
 		}
-	}
+	}*/
 
 	public static void main(String arg0[]){
 		// DataBaseManager db = new DataBaseManager();

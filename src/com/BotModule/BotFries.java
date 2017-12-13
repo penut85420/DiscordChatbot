@@ -37,7 +37,7 @@ public class BotFries {
 		
 		// 製作完整的Response
 		String response;
-		if (isProcess) response = ResponseProcess.getResponse(responseType, m);
+		if (isProcess) response = ResponseProcess.doResponseProcess(responseType, m);
 		else response = ResponseManager.getResponse(responseType, 0, m);
 		log("[Bot] Response Msg: " + response + "\n");
 		
@@ -66,7 +66,7 @@ public class BotFries {
 	public static void main(String[] args) {
 //		unitTest("我覺得貓咪大戰爭好難");
 //		unitTest("我覺得貓咪大戰爭不是很簡單");
-		unitTest("薯條喵喵叫");
+		unitTest("認識Penut嗎?");
 	}
 	
 	public static void unitTest(String msg) {

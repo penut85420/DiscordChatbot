@@ -58,8 +58,11 @@ public class WordList {
 	
 	// Get a word list of a type
 	public static ArrayList<String> getWordList(String type) {
+		ArrayList<Word> word = mWordList.get(type);
+		if (word == null) return null;
+		
 		ArrayList<String> list = new ArrayList<>();
-		for (Word w: mWordList.get(type))
+		for (Word w: word)
 			list.add(w.getWord());
 		return list;
 	}

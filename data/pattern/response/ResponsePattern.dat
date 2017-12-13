@@ -33,17 +33,28 @@
 -GameNoSale
 0-9 @game #最近好像沒有優惠欸
 
--TestResponse
-0-9 #這是個 \n #換行測試
-
 -GameHasNews
 0-9 @game #有個新聞 \n @news_title \n @news_link
 
 -GameNoNews
 0-9 @game #最近沒有新聞
 
+-WhatAreYouTalkingAbout
+0-9 #你在說啥?
+
+-DontKnowWho
+0-9 #我不認識 @player #欸
+
+-SomeoneIsHandsome
+0-9 #認識啊， @player #很帥ω
+
+// Testing Pattern
+
 -TestingResponse
 0-3 #非常不友善
 3-5 #不友善
 5-7 #友善
 7-9 #超級友善
+
+-TestResponse
+0-9 #這是個 \n #換行測試

@@ -43,6 +43,8 @@ public class ResponseProcess {
 		
 		if (type == null) return getResponse("DontKnowWho", m);
 		if (type.equals("Penut")) return getResponse("SomeoneIsHandsome", m);
+		if (type.equals("Alex")) return getResponse("KnowAlex", m);
+		if (type.equals("Leon")) return getResponse("KnowLeon", m);
 		
 		return getResponse("DontKnowWho", m);
 	}

@@ -48,6 +48,12 @@
 -SomeoneIsHandsome
 0-9 #認識啊， @player #很帥ω
 
+-KnowAlex
+0-9 #認識啊，他負責資料庫跟遊戲特價的功能
+
+-KnowLeon
+0-9 #認識啊，他觸觸欸
+
 // Testing Pattern
 
 -TestingResponse

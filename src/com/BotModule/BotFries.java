@@ -4,7 +4,7 @@ import com.Analysis.*;
 import com.Analysis.Acting.*;
 import com.Analysis.Response.*;
 import com.Analysis.Segmentation.WordSegmentation;
-import static com.Library.LibraryUtil.log;
+import static com.Library.LibraryUtil.logln;
 
 public class BotFries {
 	private static String WORD_ME = "我";
@@ -13,15 +13,18 @@ public class BotFries {
 	
 	public String[] sendMessage(String msg) {
 		// 取得訊息的斷詞資訊
-		log("[Bot] Receive Raw: " + msg + "\n");
+		logln("[Bot] Receive Raw: " + msg);
 		String wSegMsg = WordSegmentation.MaximumMatch(msg);
-		log("[Bot] Receive Seg: " + wSegMsg + "\n");
+		logln("[Bot] Receive Seg: " + wSegMsg);
 		
 		// 判斷是否Match到Pattern
 		ActingMatch am = ActingManager.match(wSegMsg);
 		
 		// 若否則回傳預設回答
-		if (am == null) return defaultResponse(msg);
+		if (am == null) {
+			logln("[Bot] Not match, return default response");
+			return defaultResponse(msg);
+		}
 		
 		// 取得Match到的主詞(@game)
 		Matchers m = am.getMatchers();
@@ -29,17 +32,17 @@ public class BotFries {
 		// 判斷是否為Method Response
 		String actingType = am.getType();
 		boolean isProcess = PatternMap.isProcess(actingType);
-		log("[Bot] Method Response: " + isProcess + "\n");
+		logln("[Bot] Method Response: " + isProcess);
 		
 		// 取得ResponseType
 		String responseType = PatternMap.matchType(actingType);
-		log("[Bot] Response Type: " + responseType + "\n");
+		logln("[Bot] Response Type: " + responseType);
 		
 		// 製作完整的Response
 		String response;
 		if (isProcess) response = ResponseProcess.doResponseProcess(responseType, m);
 		else response = ResponseManager.getResponse(responseType, 0, m);
-		log("[Bot] Response Msg: " + response + "\n");
+		logln("[Bot] Response Msg: " + response);
 		
 		return new String[] { response };
 	}

@@ -38,17 +38,15 @@ public class MainChat {
 	public void onMessageReceived(MessageReceivedEvent event)  {
 		IMessage message = event.getMessage();
 		IUser user = message.getAuthor();
-		log("[Server] UserName: " + user.getName() + "; UserAvatar: " + user.getAvatar() + "; UserDisplayName: " + user.getDisplayName(event.getGuild()) + "\n");
+		// log("[Server] UserName: " + user.getName() + "; UserAvatar: " + user.getAvatar() + "; UserDisplayName: " + user.getDisplayName(event.getGuild()) + "\n");
 		String msg = message.getContent();
 		
 		if (user.isBot()) return ;
+		IChannel channel = message.getChannel();
+		if (cmdCheck(msg, channel)) return ;
 		if (!msg.startsWith(ID)) return ;
 		
-		IChannel channel = message.getChannel();
-		
-		if (cmdCheck(msg, channel)) return ;
-		
-		for (String s: Penut.sendMessage(msg))
+		for (String s: Penut.sendMessage(msg.substring(ID.length())))
 			channel.sendMessage("<@!" + user.getStringID() + "> " + s);
 	}
 	

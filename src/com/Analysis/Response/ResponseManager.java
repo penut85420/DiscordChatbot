@@ -72,6 +72,10 @@ public class ResponseManager {
 		return arr.get(r).makeReponse(matchers);
 	}
 	
+	public static String getResponse(String type, Matchers m) { return getResponse(type, 0, m); }
+	
+	public static String getResponse(String type) { return getResponse(type, 0, new Matchers()); }
+	
 	public static void main(String[] args) {
 		Matchers m = new Matchers();
 		m.add("game", "踩地雷");

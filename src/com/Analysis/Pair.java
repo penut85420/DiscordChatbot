@@ -43,7 +43,10 @@ public class Pair {
 	}
 
 	public boolean isMatch(String s) {
-		for (String ss : getWordList())
+		ArrayList<String> list = getWordList();
+		if (getWordList() == null) return false;
+		
+		for (String ss : list)
 			if (ss.equals(s))
 				return true;
 		return false;

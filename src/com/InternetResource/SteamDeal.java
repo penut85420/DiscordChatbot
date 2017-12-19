@@ -29,7 +29,7 @@ public class SteamDeal {
 		try{
 			ArrayList<String> idList = DataBaseManager.matchGameTitle(title);
 			for(String id : idList){
-				URL website = new URL(steamDetailUrl);
+				URL website = new URL(steamDetailUrl + id);
 				ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 				FileOutputStream fos = new FileOutputStream("temp.json");
 				fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);

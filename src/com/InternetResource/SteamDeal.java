@@ -39,24 +39,29 @@ public class SteamDeal {
 				// read app detail json file
 
 				// start parse json
-				JSONObject jsonData = new JSONObject(temp).getJSONObject(id).getJSONObject("data");
-				if (jsonData.isNull("price_overview"))
-					continue;
+				JSONObject jsonData = new JSONObject(temp);
+				System.out.println(jsonData.getJSONObject(id));
+				if (jsonData.isNull(id)) continue;
+				if (jsonData.getJSONObject(id).isNull("data")) continue;
+				jsonData = jsonData.getJSONObject(id).getJSONObject("data");
+				if (jsonData.isNull("price_overview")) continue;
 				int discountRate = jsonData.getJSONObject("price_overview").getInt("discount_percent");
 				// skip no discount item
+				
 				if (discountRate == 0)
 					continue;
 				String gameTitle = jsonData.getString("name");
 
-				discountMessage += discountRate + "%:" + gameTitle + ":" + steamGameLinkBase + id + "\n";
+				discountMessage += discountRate + "%;" + gameTitle + ";" + steamGameLinkBase + id + "\n";
+				break;
 			}
 		} catch (Exception e) {
-			discountMessage = "我現在不太方便查欸";
 			e.printStackTrace();
+			return null;
 		}
 
 		if (discountMessage.isEmpty())
-			discountMessage = title + "現在沒有特價喔";
+			return null;
 
 		return discountMessage;
 	}
@@ -102,6 +107,6 @@ public class SteamDeal {
 		// SteamDeal s = new SteamDeal(db);
 		// s.getSalePage();
 		// s.parse();
-		SteamDeal.isGameInDeal("Grand Theft Auto");
+		System.out.println(SteamDeal.isGameInDeal("Killing Floor"));
 	}
 }

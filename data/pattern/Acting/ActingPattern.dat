@@ -1,3 +1,9 @@
+-DemoA
+#最近 #有 #星海爭霸 #的 #新聞 #嗎
+
+-DemoB
+#最近 #有 #ASTRONEER #的 #特價 #嗎
+
 -GameDifficult
 |我 #覺得 @game &正程度副詞 &困難形容詞
 |我 #覺得 @game &非正程度副詞 &簡易形容詞
@@ -44,7 +50,8 @@
 |大概 #就這樣
 
 -AskGameNews
-#有 #沒有 @game #的 &News
+&時間副詞 #有 #沒有 @game #的 &News |?,？
+#有 #沒有 @game #的 &News |?,？
 @game #的 &News
 
 -PlayerGoodAt
@@ -61,3 +68,6 @@
 
 -YouKnowWho
 &Know @Player &QuestionEnd
+
+-Ending
+&GoodBye

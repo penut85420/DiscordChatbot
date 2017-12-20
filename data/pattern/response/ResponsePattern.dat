@@ -54,6 +54,12 @@
 -KnowLeon
 0-9 #認識啊，他觸觸欸
 
+-EndingReply
+0-9 &GoodBye
+
+-GameHasDeal
+0-9 #目前_ @game_title #_特價中_- @deal #_Off \n @game_link
+
 // Testing Pattern
 
 -TestingResponse

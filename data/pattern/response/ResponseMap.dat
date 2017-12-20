@@ -15,7 +15,6 @@ GamePlayRefuse GamePlayLoo
 GamePlayRefuse Angry
 GamePlayOver Thanks
 GamePlayOver ThanksForGamePlay
-// GameDeal $IsGameOnSale
 GameDealAsk GameDealReply
 GamePlayClear Congratulation
 GamePlayClear CongratulateAndAskForTeach
@@ -25,4 +24,7 @@ TestingPattern TestingResponse
 
 // Response Map To Process
 AskGameNews $IsGameHasNews
+GameDeal $IsGameHasDeal
 YouKnowWho $KnowWhoReply
+DemoA $DemoA
+DemoB $DemoB

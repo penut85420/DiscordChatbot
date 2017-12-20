@@ -14,7 +14,7 @@ public class GameNewsGNN {
 	
 	public static void main(String[] args) {
 		LibraryUtil.logArr(mNewsTitleList.toArray());
-		System.out.println(getNewsInfo("鬥陣特攻"));
+		System.out.println(getNewsInfo("null"));
 	}
 
 	public static ArrayList<NewsTitle> init() {
@@ -90,7 +90,7 @@ public class GameNewsGNN {
 	}
 	
 	public static String getNewsInfo(String game) {
-		if (game != null)
+		if (game == null) return null;
 		for (NewsTitle nt: mNewsTitleList)
 			if (nt.isThemeMatch(game)) return nt.getTitle() + ";" + nt.getLink();
 		

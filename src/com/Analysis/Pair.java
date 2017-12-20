@@ -19,8 +19,11 @@ public class Pair {
 		mTag = tag;
 		mTagName = word;
 		
-		for (String s: word.split(","))
+		for (String s: word.split(",")) {
+			if (mTag.equals(TagEnum))
+				s = s.replace("_", " ");
 			mWord.add(s);
+		}
 	}
 
 	public String getTag() { return mTag; }

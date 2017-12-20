@@ -49,9 +49,8 @@ public class ActingManager {
 	
 	public static void main(String[] args) {
 		// unitTest();
-		unitTest2("我貓咪大戰爭都打不過");
-		unitTest2("我Nation Blue各種full不掉");
-		unitTest2("我覺得很難");
+		unitTest2("最近有星海爭霸的新聞嗎?");
+		unitTest2("最近有ASTRONEER的特價嗎?");
 	}
 	
 	public static void unitTest() {

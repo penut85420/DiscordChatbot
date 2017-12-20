@@ -3,6 +3,8 @@ package com.Analysis.Response;
 import com.Analysis.Matchers;
 import com.Analysis.WordList;
 import com.InternetResource.GameNewsGNN;
+import com.InternetResource.SteamDeal;
+
 import static com.Analysis.Response.ResponseManager.getResponse;
 import static com.Library.LibraryUtil.logln;
 
@@ -21,8 +23,11 @@ public class ResponseProcess {
 	}
 	
 	public static String IsGameHasNews(Matchers m) {
-		String news = GameNewsGNN.getNewsInfo(m.get("game"));
+		String game = m.get("game");
+		if (game == null) return getResponse("WhatAreYouTalkingAbout");
 		
+		String news = GameNewsGNN.getNewsInfo(game);
+
 		if (news == null) return getResponse("GameNoNews", 0, m); 
 		
 		String[] info = news.split(";");
@@ -49,6 +54,32 @@ public class ResponseProcess {
 		return getResponse("DontKnowWho", m);
 	}
 	
+	public static String IsGameHasDeal(Matchers m) {
+		String game = m.get("game");
+		
+		if (game == null) return getResponse("WhatAreYouTalkingAbout");
+		
+		String[] deal_info = SteamDeal.isGameInDeal(game).split(";");
+		
+		m.add("deal", deal_info[0]);
+		m.add("game_title", deal_info[1]);
+		m.add("game_link", deal_info[2]);
+		
+		return getResponse("GameHasDeal", m);
+	}
+	
+	public static String DemoA(Matchers m) {
+		m.add("game", "星海爭霸");
+		return IsGameHasNews(m);
+	}
+	
+	public static String DemoB(Matchers m) {
+		m.add("game", "ASTRONEER");
+		return IsGameHasDeal(m);
+	}
+	
+	// Testing Function
+	
 	public static void main(String[] args) throws Exception {
 		unitTest2();
 	}
@@ -62,7 +93,7 @@ public class ResponseProcess {
 	
 	public static void unitTest2() {
 		Matchers m = new Matchers();
-		m.add("player", "土豆");
-		System.out.println(ResponseProcess.doResponseProcess("KnowWhoReply", m));
+		m.add("game", "null");
+		System.out.println(ResponseProcess.doResponseProcess("DemoB", m));
 	}
 }

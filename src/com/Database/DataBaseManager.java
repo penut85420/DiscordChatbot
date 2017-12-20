@@ -1,5 +1,8 @@
 package com.Database;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.sql.*;
 import java.text.*;
 import java.util.*;
@@ -7,8 +10,8 @@ import java.util.*;
 import com.Analysis.Segmentation.WordSegmentation;
 
 public class DataBaseManager {
-	final static String LocalDataSource = "jdbc:mysql://127.0.0.1:3306/bot?user=newuser&password=971233&useSSL=false";
-	final static String SeverDataSource = "jdbc:mysql://140.121.199.228:3306/bot?user=newuser&password=971233&useSSL=false";
+	final static String LocalDataSource = "jdbc:mysql://127.0.0.1:3306/bot?";
+	final static String SeverDataSource = "jdbc:mysql://140.121.199.228:3306/bot?";
 	
 	final static String All_Columns = "*"; 
 	final static String Table_Users = "USERS";
@@ -16,8 +19,8 @@ public class DataBaseManager {
 	final static String Col_UserID = "USER_ID";
 	final static String Col_GameID = "GAME_ID";
 	final static String Col_GameName = "GAME_NAME";
-	final static String Col_LastMsgTime = "LAST_MESSAGE_TIME";
-	
+	final static String Col_LastMsgTime = "LAST_MESSAGE_TIME";	
+
 	static DataBaseManager DBM = new DataBaseManager();
 	static SimpleDateFormat TimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
@@ -26,11 +29,12 @@ public class DataBaseManager {
 
 	public DataBaseManager() {
 		// 如果Local端的DB沒有開啟，就Access遠端的DB
+		String login = getLoginInfo();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			mConnection = DriverManager.getConnection(LocalDataSource); 
+			mConnection = DriverManager.getConnection(LocalDataSource + login); 
 		} catch (Exception e) { 
-			try { mConnection = DriverManager.getConnection(SeverDataSource); } 
+			try { mConnection = DriverManager.getConnection(SeverDataSource + login); } 
 			catch (SQLException ee) { ee.printStackTrace(); } 
 		}
 		
@@ -151,7 +155,7 @@ public class DataBaseManager {
 	
 	// 將字串以單引號包起來
 	public static String clipSQT(String s) { return "\'" + s + "\'"; } 
-	
+
 	public static ArrayList<String> matchGameTitle(String title) throws SQLException{
 		ArrayList<String> list = new ArrayList<String>(0);
 		ResultSet rs = DBM.select(All_Columns, Table_Games); 
@@ -164,11 +168,25 @@ public class DataBaseManager {
 		
 		return list;	
 	}
+
+	private static String getLoginInfo() {
+		String s = "";
+		try {
+			BufferedReader mbr = new BufferedReader(new InputStreamReader(new FileInputStream("user.txt"), "UTF-8"));
+			if (mbr.ready())
+				s += "user=" + mbr.readLine();
+			if (mbr.ready())
+				s += "&password=" + mbr.readLine() + "&useSSL=false";
+			mbr.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
 	
 	public static void main(String[] args) throws Exception {
 		// unitTest();
-		// unitTest2();
-		unitTest3();
+		unitTest2();
 	}
 	
 	public static void unitTest() throws SQLException {
@@ -193,28 +211,6 @@ public class DataBaseManager {
 		System.out.println("[DB] Delete " + user);
 		deleteUser(user);
 		logUserList();
-	}
-	
-	public static void unitTest3() throws Exception {
-		DatabaseMetaData md = mConnection.getMetaData();
-        ResultSet rs = md.getTables(null, null, "%", null);
-        while (rs.next())
-            System.out.printf("Table Name: %s%n", rs.getString("TABLE_NAME").toUpperCase());
-		
-		mStatement.execute("SELECT * FROM USERS");
-		System.out.println(mStatement.getResultSet().getMetaData());
-		
-		mStatement.execute("SELECT * FROM GAMES");
-		System.out.println(mStatement.getResultSet().getMetaData());
-		
-		mStatement.execute("SELECT * FROM USER_FAVORITE_GAME");
-		System.out.println(mStatement.getResultSet().getMetaData());
-		
-		mStatement.execute("SELECT * FROM MESSAGE_LOG");
-		System.out.println(mStatement.getResultSet().getMetaData());
-		
-		mStatement.execute("SELECT * FROM GAME_DEAL");
-		System.out.println(mStatement.getResultSet().getMetaData());
 	}
 	
 	public static void logUserList() {

@@ -25,3 +25,4 @@ TestingPattern TestingResponse
 
 // Response Map To Process
 AskGameNews $IsGameHasNews
+YouKnowWho $KnowWhoReply

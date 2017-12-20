@@ -13,17 +13,19 @@ public class DataBaseManager {
 	final static String LocalDataSource = "jdbc:mysql://127.0.0.1:3306/bot?";
 	final static String SeverDataSource = "jdbc:mysql://140.121.199.228:3306/bot?";
 	
+	final static String All_Columns = "*"; 
 	final static String Table_Users = "USERS";
+	final static String Table_Games = "GAMES";
 	final static String Col_UserID = "USER_ID";
-	final static String Col_LastMsgTime = "LAST_MESSAGE_TIME";
-	
+	final static String Col_GameID = "GAME_ID";
+	final static String Col_GameName = "GAME_NAME";
+	final static String Col_LastMsgTime = "LAST_MESSAGE_TIME";	
+
 	static DataBaseManager DBM = new DataBaseManager();
 	static SimpleDateFormat TimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	Connection mConnection;
-	Statement mStatement;
-
-	public static enum TargetTable { USER, GAME, FAVORITE, MESSAGE };
+	static Connection mConnection;
+	static Statement mStatement;
 
 	public DataBaseManager() {
 		// 如果Local端的DB沒有開啟，就Access遠端的DB
@@ -154,6 +156,19 @@ public class DataBaseManager {
 	// 將字串以單引號包起來
 	public static String clipSQT(String s) { return "\'" + s + "\'"; } 
 
+	public static ArrayList<String> matchGameTitle(String title) throws SQLException{
+		ArrayList<String> list = new ArrayList<String>(0);
+		ResultSet rs = DBM.select(All_Columns, Table_Games); 
+		
+		if (rs == null)return list;
+		
+		while (rs.next())
+			if (rs.getString(Col_GameName).contains(title))
+				list.add(rs.getString(Col_GameID));
+		
+		return list;	
+	}
+
 	private static String getLoginInfo() {
 		String s = "";
 		try {
@@ -169,9 +184,7 @@ public class DataBaseManager {
 		return s;
 	}
 	
-	
-	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// unitTest();
 		unitTest2();
 	}

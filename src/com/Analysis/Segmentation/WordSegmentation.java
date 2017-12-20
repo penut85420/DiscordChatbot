@@ -4,16 +4,16 @@ import static com.Library.LibraryUtil.log;
 
 import java.io.*;
 
+import com.Analysis.CharacterList;
 import com.Database.DataBaseManager;
 import com.Library.LibraryIO;
 
 public class WordSegmentation {
-	static final String MainDictionaryPath = "data\\dictionary\\dictionary_main.txt";
-	static final String UserDictionaryPath = "data\\dictionary\\dictionary_user_sort.txt";
-	static final String TinyDictionaryPath = "data\\dictionary\\dictionary_small.txt";
+	static final String MainDictionaryPath = "data\\Dictionary\\dictionary_main.txt";
+	static final String UserDictionaryPath = "data\\Dictionary\\dictionary_user_sort.txt";
+	static final String TinyDictionaryPath = "data\\Dictionary\\dictionary_small.txt";
 	
 	static Dictionary mDictionary = init();
-	// static Dictionary mDictionary = new Dictionary(TinyDictionaryPath, UserDictionaryPath);
 	
 	private static Dictionary init() {
 		Dictionary dict = new Dictionary(MainDictionaryPath, UserDictionaryPath);
@@ -26,8 +26,26 @@ public class WordSegmentation {
 		String result = "";
 		
 		for (int i = 0; i < s.length(); ) {
-			String match = mDictionary.match(s.substring(i));
-			// System.out.println("Match: " + match);
+			String str = s.substring(i);
+			if (str.substring(0, 1).equals(" ")) {
+				i++; continue;
+			}
+			
+			String emoji = CharacterList.matchEmoji(str);
+			if (emoji.length() > 0) {
+				i += emoji.length();
+				result += "emoji_" + emoji + " ";
+				continue;
+			}
+			
+			String alphabet = CharacterList.matchAlphabet(str);
+			if (alphabet.length() > 0) {
+				i += alphabet.length();
+				result += alphabet + " ";
+				continue;
+			}
+			
+			String match = mDictionary.match(str);
 			i += match.length();
 			result += match + " ";
 		}
@@ -37,11 +55,13 @@ public class WordSegmentation {
 	
 	public static void addNewWord(String s) { mDictionary.add(s); }
 	
+	// Testing Function
+	
 	public static void main(String[] args) throws Exception {
 		// unitTest1();
 		// unitTest2();
 		// unitTest3();
-		log(MaximumMatch("Penut"));
+		log(MaximumMatch("Penutaaa is a handsome boy不是嗎 =..="));
 	}
 	
 	public static void unitTest1() throws Exception {

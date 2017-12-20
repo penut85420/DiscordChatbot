@@ -14,7 +14,7 @@ public class GameNewsGNN {
 	
 	public static void main(String[] args) {
 		LibraryUtil.logArr(mNewsTitleList.toArray());
-		System.out.println(getNewsInfo("J Team"));
+		System.out.println(getNewsInfo("鬥陣特攻"));
 	}
 
 	public static ArrayList<NewsTitle> init() {

@@ -44,7 +44,8 @@
 |大概 #就這樣
 
 -AskGameNews
-#有 #沒有 @game #的 #八卦,消息,新聞
+#有 #沒有 @game #的 &News
+@game #的 &News
 
 -PlayerGoodAt
 #聽說 @player #的 @game #還 #蠻 #強 #的
@@ -57,3 +58,6 @@
 
 -Greeting
 &Greeting
+
+-YouKnowWho
+&Know @Player &QuestionEnd

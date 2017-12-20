@@ -13,6 +13,12 @@ public class LibraryUtil {
 		else System.out.print(obj.toString());
 	}
 	
+	public static void logln(Object obj) {
+		if (obj == null)
+			System.out.print("[null]");
+		else System.out.print(obj.toString() + "\n");
+	}
+	
 	public static String clipBracket(String s) {
 		return "[" + s + "]";
 	}

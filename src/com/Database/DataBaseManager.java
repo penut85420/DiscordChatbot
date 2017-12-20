@@ -1,5 +1,8 @@
 package com.Database;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.sql.*;
 import java.text.*;
 import java.util.*;
@@ -7,8 +10,8 @@ import java.util.*;
 import com.Analysis.Segmentation.WordSegmentation;
 
 public class DataBaseManager {
-	final static String LocalDataSource = "jdbc:mysql://127.0.0.1:3306/bot?user=newuser&password=971233&useSSL=false";
-	final static String SeverDataSource = "jdbc:mysql://140.121.199.228:3306/bot?user=newuser&password=971233&useSSL=false";
+	final static String LocalDataSource = "jdbc:mysql://127.0.0.1:3306/bot?";
+	final static String SeverDataSource = "jdbc:mysql://140.121.199.228:3306/bot?";
 	
 	final static String Table_Users = "USERS";
 	final static String Col_UserID = "USER_ID";
@@ -24,11 +27,12 @@ public class DataBaseManager {
 
 	public DataBaseManager() {
 		// 如果Local端的DB沒有開啟，就Access遠端的DB
+		String login = getLoginInfo();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			mConnection = DriverManager.getConnection(LocalDataSource); 
+			mConnection = DriverManager.getConnection(LocalDataSource + login); 
 		} catch (Exception e) { 
-			try { mConnection = DriverManager.getConnection(SeverDataSource); } 
+			try { mConnection = DriverManager.getConnection(SeverDataSource + login); } 
 			catch (SQLException ee) { ee.printStackTrace(); } 
 		}
 		
@@ -150,6 +154,23 @@ public class DataBaseManager {
 	// 將字串以單引號包起來
 	public static String clipSQT(String s) { return "\'" + s + "\'"; } 
 
+	private static String getLoginInfo() {
+		String s = "";
+		try {
+			BufferedReader mbr = new BufferedReader(new InputStreamReader(new FileInputStream("user.txt"), "UTF-8"));
+			if (mbr.ready())
+				s += "user=" + mbr.readLine();
+			if (mbr.ready())
+				s += "&password=" + mbr.readLine() + "&useSSL=false";
+			mbr.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		// unitTest();
 		unitTest2();

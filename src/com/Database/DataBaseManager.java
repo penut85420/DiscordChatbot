@@ -156,11 +156,11 @@ public class DataBaseManager {
 	// 將字串以單引號包起來
 	public static String clipSQT(String s) { return "\'" + s + "\'"; } 
 
-	public static ArrayList<String> matchGameTitle(String title) throws SQLException{
+	public static ArrayList<String> matchGameTitle(String title) throws SQLException {
 		ArrayList<String> list = new ArrayList<String>(0);
 		ResultSet rs = DBM.select(All_Columns, Table_Games); 
 		
-		if (rs == null)return list;
+		if (rs == null) return list;
 		
 		while (rs.next())
 			if (rs.getString(Col_GameName).contains(title))
@@ -172,7 +172,7 @@ public class DataBaseManager {
 	private static String getLoginInfo() {
 		String s = "";
 		try {
-			BufferedReader mbr = new BufferedReader(new InputStreamReader(new FileInputStream("user.txt"), "UTF-8"));
+			BufferedReader mbr = new BufferedReader(new InputStreamReader(new FileInputStream("data\\dbinfo.dat"), "UTF-8"));
 			if (mbr.ready())
 				s += "user=" + mbr.readLine();
 			if (mbr.ready())
@@ -186,7 +186,8 @@ public class DataBaseManager {
 	
 	public static void main(String[] args) throws Exception {
 		// unitTest();
-		unitTest2();
+		// unitTest2();
+		System.out.println(matchGameTitle("AudioSurf"));
 	}
 	
 	public static void unitTest() throws SQLException {

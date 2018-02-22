@@ -60,6 +60,9 @@
 -GameHasDeal
 0-9 #目前_ @game_title #_特價中_- @deal #_Off \n @game_link
 
+-GameNoDeal
+0-9 #目前沒有關於_ @game #的特價喔
+
 // Testing Pattern
 
 -TestingResponse

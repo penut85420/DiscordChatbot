@@ -1,9 +1,6 @@
 package com.InternetResource;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
@@ -12,57 +9,58 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 
 import com.Database.DataBaseManager;
+import com.Library.LibraryIO;
+import static com.Library.LibraryUtil.logln;
 
 public class SteamDeal {
-	private final static String steamDetailUrl = "http://store.steampowered.com/api/appdetails?appids=";
-	private final static String steamGameLinkBase = "http://store.steampowered.com/app/";
-	private String JSONToken[] = { "", "data", "price_overview", "discount_percent" };
+	final static String TempFilePath = "testing\\temp.json",
+						SteamDetailUrl = "http://store.steampowered.com/api/appdetails?appids=",
+						SteamGameLinkBase = "http://store.steampowered.com/app/",
+						ColData = "Data",
+						ColPriceOverview = "price_overview",
+						ColDiscount = "discount_percent",
+						ColName = "name";
 
 	public static String isGameInDeal(String title) {
-		String discountMessage = "";
+		String discountMessage = null;
 		try {
 			ArrayList<String> idList = DataBaseManager.matchGameTitle(title);
 			for (String id : idList) {
-				URL website = new URL(steamDetailUrl + id);
-				ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-				FileOutputStream fos = new FileOutputStream("temp.json");
+				// Read Appdetail JSON
+				URL gameInfo = new URL(SteamDetailUrl + id);
+				ReadableByteChannel rbc = Channels.newChannel(gameInfo.openStream());
+				FileOutputStream fos = new FileOutputStream(TempFilePath);
 				fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 				fos.close();
-				// download app detail json file
 
-				String temp = "";
-				BufferedReader mbr = new BufferedReader(
-						new InputStreamReader(new FileInputStream("temp.json"), "UTF-8"));
-				while (mbr.ready())
-					temp += mbr.readLine();
-				mbr.close();
-				// read app detail json file
+				String temp = LibraryIO.readFile(TempFilePath);
 
-				// start parse json
-				JSONObject jsonData = new JSONObject(temp);
-				System.out.println(jsonData.getJSONObject(id));
-				if (jsonData.isNull(id)) continue;
-				if (jsonData.getJSONObject(id).isNull("data")) continue;
-				jsonData = jsonData.getJSONObject(id).getJSONObject("data");
-				if (jsonData.isNull("price_overview")) continue;
-				int discountRate = jsonData.getJSONObject("price_overview").getInt("discount_percent");
-				// skip no discount item
+				// JSON Parsing
+				JSONObject data = new JSONObject(temp);
+				System.out.println(data);
 				
-				if (discountRate == 0)
-					continue;
-				String gameTitle = jsonData.getString("name");
+				if (data.isNull(id)) continue;
+				if (data.getJSONObject(id).isNull(ColData)) continue;
+				
+				data = data.getJSONObject(id).getJSONObject(ColData);
+				System.out.println(data);
+				
+				if (data.isNull(ColPriceOverview)) continue;
+				
+				// Retrive Discount & Game Title
+				int discountRate = data.getJSONObject(ColPriceOverview).getInt(ColDiscount);
+				if (discountRate == 0) continue; // Skip If No Discount
+				String gameTitle = data.getString(ColName);
 
-				discountMessage += discountRate + "%;" + gameTitle + ";" + steamGameLinkBase + id + "\n";
+				// TODO: 處理多個特價的狀況
+				discountMessage = discountRate + "%;" + gameTitle + ";" + SteamGameLinkBase + id + "\n";
 				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-
-		if (discountMessage.isEmpty())
-			return null;
-
+		
 		return discountMessage;
 	}
 
@@ -103,10 +101,6 @@ public class SteamDeal {
 	 */
 
 	public static void main(String arg0[]) {
-		// DataBaseManager db = new DataBaseManager();
-		// SteamDeal s = new SteamDeal(db);
-		// s.getSalePage();
-		// s.parse();
-		System.out.println(SteamDeal.isGameInDeal("Killing Floor"));
+		System.out.println(SteamDeal.isGameInDeal("Bounty Train"));
 	}
 }

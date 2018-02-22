@@ -31,6 +31,7 @@ public class Pair {
 	
 	public boolean isTagList() { return mTag.equals(TagList); }
 	public boolean isTagSlot() { return mTag.equals(TagSlot); }
+	public boolean isTagOption() { return mTag.equals(TagOption); }
 	public boolean isTagBreakLine() { return mTag.equals(TagBreakLine); }
 	
 	public ArrayList<String> getWordList() {
@@ -56,11 +57,16 @@ public class Pair {
 	}
 
 	public String toString() {
-		String s = getTag() + ":";
+		String s = "(" + getTag() + ", ";
 
 		for (String ss : getWordList())
 			s += " " + ss;
 
-		return s;
+		return s + ")";
+	}
+	
+	public static void main(String[] args) {
+		Pair p = new Pair("&", "時間副詞");
+		System.out.println(p.isMatch("最近"));
 	}
 }

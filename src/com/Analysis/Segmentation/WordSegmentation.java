@@ -61,7 +61,7 @@ public class WordSegmentation {
 		// unitTest1();
 		// unitTest2();
 		// unitTest3();
-		log(MaximumMatch("Penutaaa is a handsome boy不是嗎 =..="));
+		log(MaximumMatch("聽說有個從天而降的語法"));
 	}
 	
 	public static void unitTest1() throws Exception {

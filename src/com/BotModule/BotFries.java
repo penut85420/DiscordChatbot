@@ -69,12 +69,14 @@ public class BotFries {
 	public static void main(String[] args) {
 //		unitTest("我覺得貓咪大戰爭好難");
 //		unitTest("我覺得貓咪大戰爭不是很簡單");
-		unitTest("認識Penut嗎?");
+		unitTest("聽說有個從天而降的語法");
+		unitTest("最近Gorogoa有在特價嗎?");
+		unitTest("最近Grand Theft Auto有在特價嗎?");
 	}
 	
 	public static void unitTest(String msg) {
-		BotFries Penut = new BotFries();
-		for (int i = 0; i < 3; i++)
-			Penut.sendMessage(msg);
+		BotFries Fries = new BotFries();
+		// for (int i = 0; i < 3; i++)
+			Fries.sendMessage(msg);
 	}
 }

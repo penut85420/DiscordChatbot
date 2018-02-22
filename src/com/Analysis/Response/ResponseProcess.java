@@ -59,6 +59,10 @@ public class ResponseProcess {
 		
 		if (game == null) return getResponse("WhatAreYouTalkingAbout");
 		
+		String deal = SteamDeal.isGameInDeal(game);
+		logln("[IsGameHasDeal] Deal: " + deal);
+		if (deal == null) return getResponse("GameNoDeal", m);
+		
 		String[] deal_info = SteamDeal.isGameInDeal(game).split(";");
 		
 		m.add("deal", deal_info[0]);
@@ -76,6 +80,11 @@ public class ResponseProcess {
 	public static String DemoB(Matchers m) {
 		m.add("game", "ASTRONEER");
 		return IsGameHasDeal(m);
+	}
+	
+	public static String 有這種中英混雜的Method(Matchers m) {
+		
+		return "媽的真的有";
 	}
 	
 	// Testing Function

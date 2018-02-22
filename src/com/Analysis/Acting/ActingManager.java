@@ -50,7 +50,8 @@ public class ActingManager {
 	public static void main(String[] args) {
 		// unitTest();
 		unitTest2("最近有星海爭霸的新聞嗎?");
-		unitTest2("最近有ASTRONEER的特價嗎?");
+//		unitTest2("最近ASTRONEER有在特價嗎?");
+		unitTest2("聽說暴龍天的手速還蠻強的");
 	}
 	
 	public static void unitTest() {

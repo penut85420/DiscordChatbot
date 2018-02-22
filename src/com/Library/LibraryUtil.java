@@ -30,7 +30,7 @@ public class LibraryUtil {
 	}
 	
 	public static void logArr(Object[] objarr) {
-		log(Arrays.toString(objarr).replaceAll(", ", "\n").replace("[", "").replace("]", ""));
+		log(Arrays.toString(objarr).replaceAll(", ", " ").replace("[", "").replace("]", ""));
 	}
 	
 	// 將情緒指數高低的字串格式轉成兩個整數，Ex: "0-9" > {0, 9}
